@@ -18,7 +18,7 @@ class Home extends Component {
         <div>
           <br/>
         </div>
-        <Link to="/Order">Select Drink - Order Drink</Link>
+        <Link to="/OrderDrinks">Select Drink - Order Drink</Link>
         <div>
           <br/>
         </div>
@@ -26,7 +26,7 @@ class Home extends Component {
         <div>
           <br/>
         </div>
-        <Link to="/collection">Order Summary </Link>
+        <Link to="/Order">Order Summary </Link>
         <div>
           <br/>
         </div>
