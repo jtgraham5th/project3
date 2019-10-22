@@ -6,14 +6,32 @@ class Home extends Component {
     return (
       <div>
         <h1>Drinks on Us</h1>
-        <Link to="/">View All Drinks</Link>
+        <Link to="/">Login</Link>
         <div>
           <br/>
         </div>
-        <Link to="/collection">Create A Drinks</Link>
+        <Link to="/">Sign-In</Link>
         <div>
-            <br/>
+          <br/>
+        </div> 
+        <Link to="/Checkin">Check-In</Link>
+        <div>
+          <br/>
         </div>
+        <Link to="/Order">Select Drink - Order Drink</Link>
+        <div>
+          <br/>
+        </div>
+        <Link to="/Lbars">Local Bars</Link>
+        <div>
+          <br/>
+        </div>
+        <Link to="/collection">Order Summary </Link>
+        <div>
+          <br/>
+        </div>
+        <Link to="/edit"> Edit Drink</Link>
+        <br/>
         <Link to="/"> More to Come</Link>
       </div>
     );
