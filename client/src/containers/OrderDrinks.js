@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SearchForm from "../components/SearchForm";
+import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 
 class OrderDrinks extends Component {
@@ -32,6 +33,7 @@ class OrderDrinks extends Component {
   render() {
     return (
       <div>
+        <Navbar />
         <h1>Drinkson</h1>
         <SearchForm
           handleFormSubmit={this.handleFormSubmit}
