@@ -40,14 +40,14 @@ app.get("/api/cars/:id", function(req, res) {
     })
 });
 
-app.get("/api/cars", function(req, res) {
-    db.Tesla.find({})
-    .then((allTeslas) => {
-        console.log(allTeslas);
+app.get("/api/news", function(req, res) {
+    db.Drink.find({})
+    .then((allDrinks) => {
+        console.log(allDrinks);
         res.json({
-            message: "Requested all Teslas",
+            message: "Requested all Drinks",
             error: false,
-            data: allTeslas
+            data: allDrinks
         });
     }).catch((err) => {
         console.log(err);
@@ -57,15 +57,15 @@ app.get("/api/cars", function(req, res) {
         })
     })
 });
-
+ 
 app.post("/api/new", function(req, res) {
-    db.Tesla.create(req.body)
-    .then((newTesla) => {
-        console.log("New tesla: ", newTesla);
+    db.Drink.create(req)
+    .then((newDrink) => {
+        console.log("New Drink: ", newDrink);
         res.json({
             message: "Successfully created",
             error: false,
-            data: newTesla
+            data: newDrink
         })
     }).catch((err) => {
         console.log(err);
@@ -74,6 +74,7 @@ app.post("/api/new", function(req, res) {
             error: true
         })
     })
+    console.log("hey")
 });
 
 app.use(express.static(__dirname + '/client/build'));
