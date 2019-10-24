@@ -3,7 +3,10 @@ var mongoose = require("mongoose");
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
 
-var TeslaSchema = new Schema({
+
+
+
+var DrinkSchema = new Schema({
 
   model: {
     type: String,
@@ -25,7 +28,7 @@ var TeslaSchema = new Schema({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-const Tesla = mongoose.model("Tesla", TeslaSchema);
+const Drink = mongoose.model("Drink", DrinkSchema);
 
 // Export the Article model
-module.exports = Tesla;
+module.exports = Drink;

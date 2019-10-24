@@ -23,13 +23,13 @@ connection.on("error", (err) => {
     console.log("Mongoose default connection error: " + err);
 });
 
-app.get("/api/cars/:id", function(req, res) {
-    db.Tesla.findById(req.params.id)
-    .then((singleTesla) => {
+app.get("/api/drinks/:id", function(req, res) {
+    db.Drinks.findById(req.params.id)
+    .then((singledrinks) => {
         res.json({
-            message: "Requested all Teslas",
+            message: "Requested all Drinks",
             error: false,
-            data: singleTesla
+            data: singledrinks
         });
     }).catch((err) => {
         console.log(err);
@@ -40,14 +40,14 @@ app.get("/api/cars/:id", function(req, res) {
     })
 });
 
-app.get("/api/cars", function(req, res) {
-    db.Tesla.find({})
-    .then((allTeslas) => {
-        console.log(allTeslas);
+app.get("/api/drinks", function(req, res) {
+    db.Drinks.find({})
+    .then((allDrinks) => {
+        console.log(allDrinks);
         res.json({
-            message: "Requested all Teslas",
+            message: "Requested all Drinks",
             error: false,
-            data: allTeslas
+            data: allDrinks
         });
     }).catch((err) => {
         console.log(err);
@@ -58,23 +58,23 @@ app.get("/api/cars", function(req, res) {
     })
 });
 
-app.post("/api/new", function(req, res) {
-    db.Tesla.create(req.body)
-    .then((newTesla) => {
-        console.log("New tesla: ", newTesla);
-        res.json({
-            message: "Successfully created",
-            error: false,
-            data: newTesla
-        })
-    }).catch((err) => {
-        console.log(err);
-        res.json({
-            message: err.message,
-            error: true
-        })
-    })
-});
+// app.post("/api/new", function(req, res) {
+//     db.Tesla.create(req.body)
+//     .then((newTesla) => {
+//         console.log("New tesla: ", newTesla);
+//         res.json({
+//             message: "Successfully created",
+//             error: false,
+//             data: newTesla
+//         })
+//     }).catch((err) => {
+//         console.log(err);
+//         res.json({
+//             message: err.message,
+//             error: true
+//         })
+//     })
+// });
 
 app.use(express.static(__dirname + '/client/build'));
 
