@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import SearchForm from "../components/SearchForm";
 import Navbar from "../components/Navbar";
+import CheckoutBtn from "../components/CheckoutBtn";
 import { Link } from "react-router-dom";
 
 delete axios.defaults.headers.common["Cookie"];
@@ -107,6 +108,7 @@ class OrderDrinks extends Component {
             </div>
           </div>
         ))}
+        <CheckoutBtn />
       </div>
     );
   }
