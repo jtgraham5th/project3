@@ -99,11 +99,11 @@ class OrderDrinks extends Component {
               </p>
             </div>
             <div class="col-md-2">
-              <Link to={"/drinks/" + drink._id}>
-                <button class="primary" id={index} onClick={this.addDrink}>
-                  Order
-                </button>
+              <Link to={"/edit/"}>
+                <button class="primary">Order</button>
               </Link>
+              
+              
             </div>
           </div>
         ))}
