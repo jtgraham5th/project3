@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SearchForm from "../components/SearchForm";
-import Navbar from "../components/Navbar";
+import Navbar from "../containers/Navbar";
 import { Link } from "react-router-dom";
 
 class OrderDrinks extends Component {
