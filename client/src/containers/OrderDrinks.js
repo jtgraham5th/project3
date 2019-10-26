@@ -5,8 +5,6 @@ import Navbar from "../components/Navbar";
 import CheckoutBtn from "../components/CheckoutBtn";
 import { Link } from "react-router-dom";
 
-delete axios.defaults.headers.common["Cookie"];
-
 class OrderDrinks extends Component {
   state = {
     drinks: [],
@@ -100,11 +98,7 @@ class OrderDrinks extends Component {
               </p>
             </div>
             <div class="col-md-2">
-              <Link to={"/edit/"}>
-                <button class="primary">Order</button>
-              </Link>
-              
-              
+                <button class="primary" id={index} onClick={this.addDrink}>Order</button>
             </div>
           </div>
         ))}

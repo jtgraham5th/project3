@@ -26,15 +26,15 @@ var DrinkSchema = new Schema({
   },
   ingredient3: {
     type: String,
-    required: true,
+    required: false,
   },
   ingredient4: {
     type: String,
-    required: true,
+    required: false,
   },
   ingredient5: {
     type: String,
-    required: true,
+    required: false,
   },
   ingredient1Measure: {
     type: String,
@@ -46,19 +46,19 @@ var DrinkSchema = new Schema({
   },
   ingredient3Measure: {
     type: String,
-    required: true,
+    required: false,
   },
   ingredient4Measure: {
     type: String,
-    required: true,
+    required: false,
   },
   ingredient5Measure: {
     type: String,
-    required: true,
+    required: false,
   },
   glass: {
     type: String,
-    required: true,
+    required: false,
   }, 
   instructions: {
     type: String,

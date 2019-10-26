@@ -42,7 +42,7 @@ app.get("/api/cars/:id", function(req, res) {
     })
 });
 
-app.get("/api/news", function(req, res) {
+app.get("/order-summary", function(req, res) {
     db.Drink.find({})
     .then((allDrinks) => {
         console.log(allDrinks);
