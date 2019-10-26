@@ -26,39 +26,39 @@ var DrinkSchema = new Schema({
   },
   ingredient3: {
     type: String,
-    required: false,
+    required: true,
   },
   ingredient4: {
     type: String,
-    required: false,
+    required: true,
   },
   ingredient5: {
     type: String,
-    required: false,
+    required: true,
   },
-  // ingredient1Measure: {
-  //   type: String,
-  //   required: true,
-  // },
-  // ingredient2Measure: {
-  //   type: String,
-  //   required: true,
-  // },
-  // ingredient3Measure: {
-  //   type: String,
-  //   required: false,
-  // },
-  // ingredient4Measure: {
-  //   type: String,
-  //   required: false,
-  // },
-  // ingredient5Measure: {
-  //   type: String,
-  //   required: false,
-  // },
+  ingredient1Measure: {
+    type: String,
+    required: true,
+  },
+  ingredient2Measure: {
+    type: String,
+    required: true,
+  },
+  ingredient3Measure: {
+    type: String,
+    required: true,
+  },
+  ingredient4Measure: {
+    type: String,
+    required: true,
+  },
+  ingredient5Measure: {
+    type: String,
+    required: true,
+  },
   glass: {
     type: String,
-    required: false,
+    required: true,
   }, 
   instructions: {
     type: String,

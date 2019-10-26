@@ -4,10 +4,12 @@ import SearchForm from "../components/SearchForm";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
 
+delete axios.defaults.headers.common["Cookie"];
+
 class OrderDrinks extends Component {
   state = {
     drinks: [],
-    searchQuery: ""
+    searchQuery: "",
   };
 
   componentDidMount() {
@@ -32,18 +34,18 @@ class OrderDrinks extends Component {
       ingredient3: this.state.drinks[id].strIngredient3,
       ingredient4: this.state.drinks[id].strIngredient4,
       ingredient5: this.state.drinks[id].strIngredient5,
-      // ingredient1Measure: this.state.drinks[id].strMeasure1,
-      // ingredient2Measure: this.state.drinks[id].strMeasure2,
-      // ingredient3Measure: this.state.drinks[id].strMeasure3,
-      // ingredient4Measure: this.state.drinks[id].strMeasure4,
-      // ingredient5Measure: this.state.drinks[id].strMeasure5,
+      ingredient1Measure: this.state.drinks[id].strMeasure1,
+      ingredient2Measure: this.state.drinks[id].strMeasure2,
+      ingredient3Measure: this.state.drinks[id].strMeasure3,
+      ingredient4Measure: this.state.drinks[id].strMeasure4,
+      ingredient5Measure: this.state.drinks[id].strMeasure5,
       glass: this.state.drinks[id].strGlass,
       instructions: this.state.drinks[id].strInstructions
     };
     console.log(newDrink);
-
+    
     axios
-      .post("/api/new", {newDrink})
+      .post("/api/new", newDrink)
       .then(response => {
         console.log(response);
       })
@@ -51,7 +53,6 @@ class OrderDrinks extends Component {
         console.log(err);
         alert("Failed to create: " + err.message);
       });
-    console.log({ newDrink });
   };
 
   handleInputChange = event => {
