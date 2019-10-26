@@ -76,7 +76,6 @@ app.post("/api/new", function(req, res) {
             error: true
         })
     })
-    console.log("hey")
 });
 
 app.use(express.static(__dirname + '/client/build'));
