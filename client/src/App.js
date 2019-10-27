@@ -4,7 +4,7 @@ import Home from "./containers/Home";
 import Checkin from "./containers/Checkin";
 import LocalBars from "./containers/Lbars";
 import Summary from './containers/Summary';
-import Edit from './containers/edit';
+import Edit from './containers/Edit';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {

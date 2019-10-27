@@ -8,7 +8,7 @@ function CheckoutBtn(props) {
       <a href="/edit">
         <button
           type="button"
-          className="btn btn-primary btn-lg btn-block"
+          className="btn btn-primary btn-lg btn-block fixed-bottom"
           onClick={props.handleFormSubmit}
         >
           Checkout

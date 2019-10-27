@@ -59,7 +59,24 @@ app.get("/order-summary", function(req, res) {
         })
     })
 });
- 
+
+app.delete("/order-summary/drink-:id", function(req, res) {
+    db.Drink.deleteOne({_id: req.params.id})
+    .then((response) => {
+        // console.log(response);
+        res.json({
+            message: `Deleted drink with id: ${req.params.id}`,
+            error: false,
+            data: response
+        });
+    }).catch((err) => {
+        console.log(err);
+        res.json({
+            message: err.message,
+            error: true
+        })
+    })
+})
 app.post("/api/new", function(req, res) {
     db.Drink.create(req.body)
     .then((newDrink) => {

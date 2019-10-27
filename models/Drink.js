@@ -2,7 +2,10 @@ var mongoose = require("mongoose");
 
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
-
+var ingredientSchema = new Schema({
+  name: String,
+  measure: String
+});
 var DrinkSchema = new Schema({
   drinkId: {
     type: String,
@@ -16,53 +19,55 @@ var DrinkSchema = new Schema({
     type: String,
     required: true
   },
-  ingredient1: {
-    type: String,
-    required: true,
-  },
-  ingredient2: {
-    type: String,
-    required: true,
-  },
-  ingredient3: {
-    type: String,
-    required: false,
-  },
-  ingredient4: {
-    type: String,
-    required: false,
-  },
-  ingredient5: {
-    type: String,
-    required: false,
-  },
-  ingredient1Measure: {
-    type: String,
-    required: true,
-  },
-  ingredient2Measure: {
-    type: String,
-    required: true,
-  },
-  ingredient3Measure: {
-    type: String,
-    required: false,
-  },
-  ingredient4Measure: {
-    type: String,
-    required: false,
-  },
-  ingredient5Measure: {
-    type: String,
-    required: false,
-  },
+  // ingredient1: {
+  //   type: String,
+  //   required: true
+  // },
+  // ingredient2: {
+  //   type: String,
+  //   required: true
+  // },
+  // ingredient3: {
+  //   type: String,
+  //   required: false
+  // },
+  // ingredient4: {
+  //   type: String,
+  //   required: false
+  // },
+  // ingredient5: {
+  //   type: String,
+  //   required: false
+  // },
+  ingredients: [ingredientSchema],
+
+  // ingredient1Measure: {
+  //   type: String,
+  //   required: true,
+  // },
+  // ingredient2Measure: {
+  //   type: String,
+  //   required: true,
+  // },
+  // ingredient3Measure: {
+  //   type: String,
+  //   required: false,
+  // },
+  // ingredient4Measure: {
+  //   type: String,
+  //   required: false,
+  // },
+  // ingredient5Measure: {
+  //   type: String,
+  //   required: false,
+  // },
   glass: {
     type: String,
-    required: false,
-  }, 
+    required: false
+  },
   instructions: {
     type: String,
-    required: true,
+    required: true
   }
 });
 

@@ -3,12 +3,11 @@ import axios from "axios";
 import SearchForm from "../components/SearchForm";
 import Navbar from "../components/Navbar";
 import CheckoutBtn from "../components/CheckoutBtn";
-import { Link } from "react-router-dom";
 
 class OrderDrinks extends Component {
   state = {
     drinks: [],
-    searchQuery: "",
+    searchQuery: ""
   };
 
   componentDidMount() {
@@ -28,21 +27,38 @@ class OrderDrinks extends Component {
       drinkId: this.state.drinks[id].idDrink,
       drinkThumb: this.state.drinks[id].strDrinkThumb,
       drinkName: this.state.drinks[id].strDrink,
-      ingredient1: this.state.drinks[id].strIngredient1,
-      ingredient2: this.state.drinks[id].strIngredient2,
-      ingredient3: this.state.drinks[id].strIngredient3,
-      ingredient4: this.state.drinks[id].strIngredient4,
-      ingredient5: this.state.drinks[id].strIngredient5,
-      ingredient1Measure: this.state.drinks[id].strMeasure1,
-      ingredient2Measure: this.state.drinks[id].strMeasure2,
-      ingredient3Measure: this.state.drinks[id].strMeasure3,
-      ingredient4Measure: this.state.drinks[id].strMeasure4,
-      ingredient5Measure: this.state.drinks[id].strMeasure5,
+      // ingredient1: this.state.drinks[id].strIngredient1,
+      // ingredient2: this.state.drinks[id].strIngredient2,
+      // ingredient3: this.state.drinks[id].strIngredient3,
+      // ingredient4: this.state.drinks[id].strIngredient4,
+      // ingredient5: this.state.drinks[id].strIngredient5,
+      ingredients: [
+        {
+          name: this.state.drinks[id].strIngredient1,
+          measure: parseInt(this.state.drinks[id].strMeasure1)
+        },
+        {
+          name: this.state.drinks[id].strIngredient2,
+          measure: parseInt(this.state.drinks[id].strMeasure2)
+        },
+        {
+          name: this.state.drinks[id].strIngredient3,
+          measure: parseInt(this.state.drinks[id].strMeasure3)
+        },
+        {
+          name: this.state.drinks[id].strIngredient4,
+          measure: parseInt(this.state.drinks[id].strMeasure4)
+        },
+        {
+          name: this.state.drinks[id].strIngredient5,
+          measure: parseInt(this.state.drinks[id].strMeasure5)
+        },
+      ],
       glass: this.state.drinks[id].strGlass,
       instructions: this.state.drinks[id].strInstructions
     };
     console.log(newDrink);
-    
+
     axios
       .post("/api/new", newDrink)
       .then(response => {
@@ -85,7 +101,11 @@ class OrderDrinks extends Component {
         {this.state.drinks.map((drink, index) => (
           <div className="row border" key={drink.idDrink}>
             <div className="col-md-2 border">
-              <img className="w-100" src={drink.strDrinkThumb}></img>
+              <img
+                className="w-100"
+                src={drink.strDrinkThumb}
+                alt={drink.strDrink}
+              />
             </div>
             <div className="col-md-8">
               <h1>{drink.strDrink}</h1>
@@ -97,8 +117,10 @@ class OrderDrinks extends Component {
                 </h5>
               </p>
             </div>
-            <div class="col-md-2">
-                <button class="primary" id={index} onClick={this.addDrink}>Order</button>
+            <div className="col-md-2">
+              <button className="primary" id={index} onClick={this.addDrink}>
+                Order
+              </button>
             </div>
           </div>
         ))}
