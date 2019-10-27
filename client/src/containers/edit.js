@@ -43,32 +43,32 @@ class Edit extends Component {
       });
   };
 
-  increaseMeasure = event => {
-    // const id = event.target.id;
-    // const name = event.target.name
-
+  changeMeasure = event => {
     const { name, id, value } = event.target;
-    // let updatedValue = value + 1
     this.setState(state => {
       const list1 = state.drinks.map((item, j) => {
-        if (j === id) {
+        if (parseInt(id) === parseInt(j)) {
+          console.log(item);
           const list2 = item.ingredients.map((ingredient, i) => {
-            if (i === name) {
-              return ingredient.measure + 1;
+            if (parseInt(i) === parseInt(name)) {
+                if (value === "+") {
+                ingredient["measure"] = (parseInt(ingredient.measure) + 1)
+                } else if (value === "-") {
+                ingredient["measure"] = (parseInt(ingredient.measure) - 1)
+                }
+              return (ingredient);
             } else {
-              return ingredient;
-            }
+                return (ingredient);
+            };
           });
-          return {
-            list2
-          };
+          return (list2);
         } else {
-          return item;
-        }
+            return (item);
+        };
       });
-      return {
-        list1
-      };
+      console.log(list1)
+      return (list1);
+      this.props.history.push("/summary");
     });
   };
 
@@ -97,8 +97,8 @@ class Edit extends Component {
                       className="btn btn-success"
                       id={index}
                       name={i}
-                      value={ingredient.measure}
-                      onClick={this.increaseMeasure}
+                      value="+"
+                      onClick={this.changeMeasure}
                     />
                   </div>
                   <div className="col-md-2">{ingredient.measure}</div>
@@ -107,7 +107,8 @@ class Edit extends Component {
                       className="btn btn-success"
                       id={index}
                       name={i}
-                      onClick={this.increaseMeasure}
+                      value="-"
+                      onClick={this.changeMeasure}
                     />
                   </div>
                 </div>
