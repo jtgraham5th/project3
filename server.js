@@ -60,7 +60,7 @@ app.get("/order-summary", function(req, res) {
     })
 });
 
-app.delete("/order-summary/drink-:id", function(req, res) {
+app.delete("/order-summary/drink/:id", function(req, res) {
     db.Drink.deleteOne({_id: req.params.id})
     .then((response) => {
         // console.log(response);

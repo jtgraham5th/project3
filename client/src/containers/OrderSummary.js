@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
-import CheckoutBtn from "../components/CheckoutBtn";
-import { Link } from "react-router-dom";
+// import CheckoutBtn from "../components/CheckoutBtn";
+// import { Link } from "react-router-dom";
 
-class Edit extends Component {
+class OrderSummary extends Component {
   state = {
     drinks: [],
     loaded: false
@@ -31,16 +31,22 @@ class Edit extends Component {
     event.preventDefault();
     const id = event.target.id;
     const drinkToBeRemoved = this.state.drinks[id]._id;
-
+    let shouldDelete = window.confirm(
+      "Are you sure you want to delete this drink?"
+    );
+    if (shouldDelete === true) {
     axios
       .delete(`/order-summary/drink/${drinkToBeRemoved}`)
       .then(response => {
         console.log(response);
+        alert("Drink has been removed")
+        this.props.history.push("/summary");
       })
       .catch(err => {
         console.log(err);
         alert("Failed to create: " + err.message);
       });
+    }
   };
 
   changeMeasure = event => {
@@ -68,7 +74,7 @@ class Edit extends Component {
       });
       console.log(list1)
       return (list1);
-      this.props.history.push("/summary");
+      // this.props.history.push("/summary");
     });
   };
 
@@ -137,4 +143,4 @@ class Edit extends Component {
   // }
 }
 
-export default Edit;
+export default OrderSummary;

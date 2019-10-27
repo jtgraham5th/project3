@@ -13,13 +13,6 @@ class OrderDrinks extends Component {
   componentDidMount() {
     // this.getDrinks();
   }
-  getIndex = (value, arr, prop, state) => {
-    for (var i = 0; i < arr.length; i++) {
-      if (arr[i][prop] === value) {
-        return i;
-      }
-    }
-  };
   addDrink = event => {
     event.preventDefault();
     const id = event.target.id;
@@ -27,11 +20,6 @@ class OrderDrinks extends Component {
       drinkId: this.state.drinks[id].idDrink,
       drinkThumb: this.state.drinks[id].strDrinkThumb,
       drinkName: this.state.drinks[id].strDrink,
-      // ingredient1: this.state.drinks[id].strIngredient1,
-      // ingredient2: this.state.drinks[id].strIngredient2,
-      // ingredient3: this.state.drinks[id].strIngredient3,
-      // ingredient4: this.state.drinks[id].strIngredient4,
-      // ingredient5: this.state.drinks[id].strIngredient5,
       ingredients: [
         {
           name: this.state.drinks[id].strIngredient1,
