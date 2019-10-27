@@ -8,17 +8,14 @@
     "start": "node server.js",
     "server": "nodemon server.js",
     "client": "npm start client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"nodemon server.js\" \"cd client && npm run start\"",
     "seed": "node scripts/seedsDB.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
-=======
     "bcryptjs": "^2.4.3",
->>>>>>> 8f91c67f0b502b0392425279de8035c57a07c6d7
     "body-parser": "^1.19.0",
     "concurrently": "^5.0.0",
     "dotenv": "^8.2.0",

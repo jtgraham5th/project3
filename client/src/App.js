@@ -1,11 +1,8 @@
 
 import React, { Component } from "react";
 import "./App.css";
-import Navbar from "./containers/Navbar";
-
-
+import Navbar from "./components/Navbar";
 import Register from "./containers/Register";
-
 import Login from "./containers/Login";
 import OrderDrinks from "./containers/OrderDrinks";
 import Home from "./containers/Home";

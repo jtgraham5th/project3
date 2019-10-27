@@ -5,7 +5,7 @@ import "./style.css";
 function CheckoutBtn(props) {
   return (
     <div>
-      <a href="/edit">
+      <a href="/summary">
         <button
           type="button"
           className="btn btn-primary btn-lg btn-block fixed-bottom"

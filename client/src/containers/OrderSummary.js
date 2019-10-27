@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Navbar from "../components/Navbar";
 // import CheckoutBtn from "../components/CheckoutBtn";
 // import { Link } from "react-router-dom";
 
@@ -46,6 +45,11 @@ class OrderSummary extends Component {
         console.log(err);
         alert("Failed to create: " + err.message);
       });
+      let drinksCopy = Array.from(this.state.drinks);
+      if (id !== -1) {
+        drinksCopy.splice(id, 1);
+        this.setState({drinks: drinksCopy})
+      };
     }
   };
 
@@ -82,7 +86,6 @@ class OrderSummary extends Component {
     return (
       <div>
         <h1>Edit Drinks</h1>
-        <Navbar />
         <h1>Drinkson</h1>
         {this.state.drinks.map((drink, index) => (
           <div className="row border">

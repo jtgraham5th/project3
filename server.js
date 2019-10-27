@@ -4,11 +4,12 @@ const mongoose = require("mongoose");
 const path = require("path");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-const users = require("./routes/api/users");
+// const users = require("./routes/api/users");
 
 const PORT = process.env.PORT || 3001;
 
-const db = require("./config/keys").mongoURI;
+const db = require("./models")
+// const db = require("./config/keys").mongoURI;
 
 const app = express();
 
@@ -21,17 +22,18 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+
 mongoose
-  .connect(process.env.MONGODB_URI || db, { useNewUrlParser: true })
-  .then(() => console.log("MongoDB successfully connected"))
-  .catch(err => console.log(err));
+  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+//   .then(() => console.log("MongoDB successfully connected"))
+//   .catch(err => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 // Routes
-app.use("/api/users", users);
+// app.use("/api/users", users);
 
 const connection = mongoose.connection;
 
