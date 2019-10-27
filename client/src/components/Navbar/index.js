@@ -1,18 +1,32 @@
 import React from "react";
 import "./style.css";
+import { Nav, NavItem, NavLink } from 'reactstrap';
 
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
 function Navbar(props) {
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="#">Features</a>
-      <a class="nav-item nav-link" href="#">Pricing</a>
-      <a class="nav-item nav-link disabled" href="#">Disabled</a>
-    </div>
-</nav>
-  );
-}
+      <div>
+        <Nav tabs>
+        <NavItem>
+        <NavLink href="/" active>Home</NavLink>
+      </NavItem>
+          <NavItem>
+            <NavLink href="/Login" active>Login</NavLink>
+          </NavItem>
+          <NavItem>
+          <NavLink href="/Register" active>Sign Up</NavLink>
+        </NavItem>
+  
+        <NavItem>
+        <NavLink href="/Checkin" active>Check-In</NavLink>
+      </NavItem>
+  
+      <NavItem>
+      <NavLink href="/OrderDrinks" active>Order Drink</NavLink>
+    </NavItem>
+          </Nav>
+        </div>
+      );
+    }
 
 export default Navbar;

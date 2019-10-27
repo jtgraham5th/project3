@@ -1,6 +1,7 @@
 // Exporting an object containing all of our models
 
 module.exports = {
-  Tesla: require("./Tesla")
+  Drink: require("./Drink"),
+  User: require("./User")
   // Note: require("./Note")
 };
