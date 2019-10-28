@@ -1,22 +1,21 @@
 import React from "react";
 import "./style.css";
-// import { Button } from 'reactstrap'
 
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
-function CheckoutBtn(props) {
+function OrderBtn(props) {
   return (
     <div>
-      {/* <a href=""> */}
+      <a href="/summary">
         <button
           type="button"
           className="btn btn-primary btn-lg btn-block fixed-bottom"
           onClick={props.handleFormSubmit}
         >
-          Place Order
+          Order Drinks
         </button>
-      {/* </a> */}
+      </a>
     </div>
   );
 }
 
-export default CheckoutBtn;
+export default OrderBtn;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SearchForm from "../components/SearchForm";
-import CheckoutBtn from "../components/CheckoutBtn";
+import OrderBtn from "../components/OrderBtn";
 
 class OrderDrinks extends Component {
   state = {
@@ -110,7 +110,7 @@ class OrderDrinks extends Component {
             </div>
           </div>
         ))}
-        <CheckoutBtn />
+        <OrderBtn />
       </div>
     );
   }

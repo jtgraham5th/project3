@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import CheckoutBtn from "../components/CheckoutBtn";
+import { Button } from 'reactstrap';
+import CheckoutBtn from "../components/CheckoutBtn";
 // import { Link } from "react-router-dom";
 
 class OrderSummary extends Component {
@@ -9,14 +10,13 @@ class OrderSummary extends Component {
     loaded: false
   };
 
- componentDidMount() {
+  componentDidMount() {
     axios
       .get("/order-summary")
       .then(response => {
         console.log(response.data.data);
-        this.setState({ 
-          drinks: response.data.data, 
-           
+        this.setState({
+          drinks: response.data.data
         });
       })
       .catch(err => {
@@ -34,22 +34,22 @@ class OrderSummary extends Component {
       "Are you sure you want to delete this drink?"
     );
     if (shouldDelete === true) {
-    axios
-      .delete(`/order-summary/drink/${drinkToBeRemoved}`)
-      .then(response => {
-        console.log(response);
-        alert("Drink has been removed")
-        this.props.history.push("/summary");
-      })
-      .catch(err => {
-        console.log(err);
-        alert("Failed to create: " + err.message);
-      });
+      axios
+        .delete(`/order-summary/drink/${drinkToBeRemoved}`)
+        .then(response => {
+          console.log(response);
+          alert("Drink has been removed");
+          this.props.history.push("/summary");
+        })
+        .catch(err => {
+          console.log(err);
+          alert("Failed to create: " + err.message);
+        });
       let drinksCopy = Array.from(this.state.drinks);
       if (id !== -1) {
         drinksCopy.splice(id, 1);
-        this.setState({drinks: drinksCopy})
-      };
+        this.setState({ drinks: drinksCopy });
+      }
     }
   };
 
@@ -61,25 +61,43 @@ class OrderSummary extends Component {
           console.log(item);
           const list2 = item.ingredients.map((ingredient, i) => {
             if (parseInt(i) === parseInt(name)) {
-                if (value === "+") {
-                ingredient["measure"] = (parseInt(ingredient.measure) + 1)
-                } else if (value === "-") {
-                ingredient["measure"] = (parseInt(ingredient.measure) - 1)
-                }
-              return (ingredient);
+              if (value === "+") {
+                ingredient["measure"] = parseInt(ingredient.measure) + 1;
+              } else if (value === "-") {
+                ingredient["measure"] = parseInt(ingredient.measure) - 1;
+              }
+              return ingredient;
             } else {
-                return (ingredient);
-            };
+              return ingredient;
+            }
           });
-          return (list2);
+          return list2;
         } else {
-            return (item);
-        };
+          return item;
+        }
       });
-      console.log(list1)
-      return (list1);
+      console.log(list1);
+      return list1;
       // this.props.history.push("/summary");
     });
+  };
+
+  handleFormSubmit = event => {
+    console.log("work dammit");
+    event.preventDefault();
+    
+    // axios
+    //   .get(
+    //     "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" +
+    //       this.state.searchQuery
+    //   )
+    //   .then(drinks => {
+    //     console.log(drinks);
+    //     this.setState({ drinks: drinks.data.drinks });
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   };
 
   render() {
@@ -102,23 +120,27 @@ class OrderSummary extends Component {
                 <div className="row">
                   <div className="col-md-8">{ingredient.name}</div>
                   <div className="col-md-1">
-                    <button
-                      className="btn btn-success"
+                    <Button
+                      color="success"
                       id={index}
                       name={i}
                       value="+"
                       onClick={this.changeMeasure}
-                    />
+                    >
+                      <span aria-hidden>&lsaquo</span>
+                    </Button>
                   </div>
                   <div className="col-md-2">{ingredient.measure}</div>
                   <div className="col-md-1">
-                    <button
-                      className="btn btn-success"
+                    <Button
+                      color="success"
                       id={index}
                       name={i}
                       value="-"
                       onClick={this.changeMeasure}
-                    />
+                    >
+                      <span aria-hidden>&rsaquo</span>
+                    </Button>
                   </div>
                 </div>
               ))}
@@ -134,16 +156,10 @@ class OrderSummary extends Component {
             </div>
           </div>
         ))}
+        <CheckoutBtn />
       </div>
     );
   }
-  // render() {
-  //   if (this.state.loaded === false) {
-  //     return <div> Waiting...</div>;
-  //   } else {
-  //     return <div>{this.content()}</div>;
-  //   }
-  // }
 }
 
 export default OrderSummary;
