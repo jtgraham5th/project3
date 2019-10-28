@@ -24,6 +24,10 @@ function Navbar(props) {
       <NavItem>
       <NavLink href="/OrderDrinks" active>Order Drink</NavLink>
     </NavItem>
+
+    <NavItem>
+      <NavLink href="/Bars" active>Bars</NavLink>
+    </NavItem>
           </Nav>
         </div>
       );
