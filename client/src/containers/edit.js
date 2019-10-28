@@ -11,7 +11,7 @@ class Edit extends Component {
   };
 
   componentDidMount(){
-    console.log("hi this is working")
+    console.log(this.props.match.params.id);
     this.getdrinkbyID();
   }
 
@@ -34,12 +34,66 @@ class Edit extends Component {
   }
   render() {
     return (
-      <div>
-        <h1>Edit Drinks</h1>
-        <form>
-          
-        </form>
+      <div className="container">
+      <div className="row">
+        <h1>This is the edit page</h1>
+        <div className="col-sm-3"></div>
+        <div className="col-sm-6">
+          <form>
+            <div className="form-group">
+              <label htmlFor="drink">Drink ID</label>
+              <input
+                className="form-control"
+                type="text"
+                name="Drink ID"
+                placeholder="Drink"
+                value={this.state.model}
+                onChange={this.handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="color">Drink Name</label>
+              <input
+                className="form-control"
+                type="text"
+                name="Drink Name"
+                placeholder="Color"
+                value={this.state.color}
+                onChange={this.handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="year">Ingredient 1</label>
+              <input
+                className="form-control"
+                type="number"
+                name="year"
+                placeholder="Year"
+                value={this.state.year}
+                onChange={this.handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="imageURL">Drink</label>
+              <input
+                className="form-control"
+                type="text"
+                name="imageURL"
+                placeholder="Image URL"
+                value={this.state.imageURL}
+                onChange={this.handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <button className="btn btn-primary" onClick={this.handleSubmit}>
+                Submit Changes
+              </button>
+            </div>
+          </form>
+        </div>
+        <div className="col-sm-3"></div>
       </div>
+    </div>
     );
   }
 }

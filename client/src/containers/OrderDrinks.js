@@ -13,6 +13,46 @@ class OrderDrinks extends Component {
   componentDidMount() {
     // this.getDrinks();
   }
+  postIndex = (value, arr, prop, state) => {
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i][prop] === value) {
+        return i;
+      }
+    }
+  };
+  addDrink = event => {
+    event.preventDefault();
+    const id = event.target.id;
+    const newDrink = {
+      drinkId: this.state.drinks[id].idDrink,
+      drinkThumb: this.state.drinks[id].strDrinkThumb,
+      drinkName: this.state.drinks[id].strDrink,
+      ingredient1: this.state.drinks[id].strIngredient1,
+      ingredient2: this.state.drinks[id].strIngredient2,
+      ingredient3: this.state.drinks[id].strIngredient3,
+      ingredient4: this.state.drinks[id].strIngredient4,
+      ingredient5: this.state.drinks[id].strIngredient5,
+      // ingredient1Measure: this.state.drinks[id].strMeasure1,
+      // ingredient2Measure: this.state.drinks[id].strMeasure2,
+      // ingredient3Measure: this.state.drinks[id].strMeasure3,
+      // ingredient4Measure: this.state.drinks[id].strMeasure4,
+      // ingredient5Measure: this.state.drinks[id].strMeasure5,
+      glass: this.state.drinks[id].strGlass,
+      instructions: this.state.drinks[id].strInstructions
+    };
+    console.log(newDrink);
+
+    axios
+      .post("/api/new", {newDrink})
+      .then(response => {
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+        alert("Failed to create: " + err.message);
+      });
+    console.log({ newDrink });
+  };
 
   handleInputChange = event => {
     this.setState({ searchQuery: event.target.value });
@@ -21,7 +61,10 @@ class OrderDrinks extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     axios
-      .get("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + this.state.searchQuery)
+      .get(
+        "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" +
+          this.state.searchQuery
+      )
       .then(drinks => {
         console.log(drinks);
         this.setState({ drinks: drinks.data.drinks });
@@ -34,12 +77,12 @@ class OrderDrinks extends Component {
     return (
       <div>
         <Navbar />
-        <h1>Drinkson</h1>
+        <h1>Drinks-on</h1>
         <SearchForm
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
         />
-        {this.state.drinks.map((drink, i) => (
+        {this.state.drinks.map((drink, index) => (
           <div className="row border" key={drink.idDrink}>
             <div className="col-md-2 border">
               <img className="w-100" src={drink.strDrinkThumb}></img>
@@ -55,8 +98,10 @@ class OrderDrinks extends Component {
               </p>
             </div>
             <div class="col-md-2">
-              <Link to={"/edit/"}>
-                <button class="primary">Order</button>
+              <Link to={"/edit/" + drink._id}>
+                <button ClassName="primary" id={index} onClick={this.addDrink}>
+                  Order
+                </button>
               </Link>
               
               

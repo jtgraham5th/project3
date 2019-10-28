@@ -38,6 +38,7 @@ app.get("/api/drinks/:id", function(req, res) {
             error: true
         })
     })
+    console.log("What it Do Baby")
 });
 
 app.get("/api/drinks", function(req, res) {
@@ -58,23 +59,27 @@ app.get("/api/drinks", function(req, res) {
     })
 });
 
-// app.post("/api/new", function(req, res) {
-//     db.Tesla.create(req.body)
-//     .then((newTesla) => {
-//         console.log("New tesla: ", newTesla);
-//         res.json({
-//             message: "Successfully created",
-//             error: false,
-//             data: newTesla
-//         })
-//     }).catch((err) => {
-//         console.log(err);
-//         res.json({
-//             message: err.message,
-//             error: true
-//         })
-//     })
-// });
+
+
+
+app.post("/api/new", function(req, res) {
+    db.Drink.create(req)
+    .then((newDrink) => {
+        console.log("New Drink: ", newDrink);
+        res.json({
+            message: "Successfully created",
+            error: false,
+            data: newDrink
+        })
+    }).catch((err) => {
+        console.log(err);
+        res.json({
+            message: err.message,
+            error: true
+        })
+    })
+    console.log("hey")
+});
 
 app.use(express.static(__dirname + '/client/build'));
 
