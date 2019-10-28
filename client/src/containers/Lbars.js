@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Axios from "axios";
+import GoogleMapReact from 'google-map-react';
+import MapFlag from "../components/MapFlag"
+// const AnyReactComponent = ({ text }) => <div style={{ color: 'red'}}>{text}</div>;
 
 // API key AIzaSyAlHrNlmCS8c70eIYOlfkD6JijDgE5sfOc
 
@@ -7,13 +10,19 @@ class Bars extends Component {
   state={
     bars: []
   };
-
+  static defaultProps = {
+    center: {
+      lat: 33.7756,
+      lng: -84.3963
+    },
+    zoom: 11
+  };
   componentDidMount() {
 
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    const mapsurl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=bars&location=84.3963000,33.7756000&radius=100&key=AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA`;
+    const mapsurl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=bars+in+Atlanta&key=AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA`;
   
-
+    // https://maps.googleapis.com/maps/api/place/textsearch/json?query=bars&location=-84.39,33.77&radius=100&key=AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA
     
     
     Axios
@@ -30,6 +39,19 @@ class Bars extends Component {
   render() {
     return (
       <div>
+      <div style={{ height: '100vh', width: '75%' }}>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key:'AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA'}}
+          defaultCenter={this.props.center}
+          defaultZoom={this.props.zoom}
+        >{this.state.bars.map((bar,index) =>(
+          <MapFlag
+            lat={bar.geometry.location.lat}
+            lng={bar.geometry.location.lng}
+            text={bar.name}
+          />))}
+        </GoogleMapReact>
+      </div>
         <h1>Local Bars to Search</h1>
         <div>
         {this.state.bars.map((bar,index) =>(
