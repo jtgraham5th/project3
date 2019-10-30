@@ -9,6 +9,7 @@ import Home from "./containers/Home";
 import Checkin from "./containers/Checkin";
 import LocalBars from "./containers/Lbars";
 import OrderSummary from './containers/OrderSummary';
+import Bartender from './containers/Bartender';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 
@@ -24,6 +25,7 @@ class App extends Component {
       <Switch>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
+        <Route path="/Bartender" component={Bartender} />
         <Route path="/Bars" component={LocalBars} />
         <Route path="/summary" component={OrderSummary}/>
         <Route path="/checkin" component={Checkin} /> 

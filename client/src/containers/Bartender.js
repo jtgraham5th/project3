@@ -5,19 +5,19 @@ import { Button } from 'reactstrap'
 
 // import { Link } from "react-router-dom";
 
-class OrderSummary extends Component {
+class Bartender extends Component {
   state = {
-    drinks: [],
+    orders: [],
     loaded: false
   };
 
   componentDidMount() {
     axios
-      .get("/order-summary")
+      .get("/bartender/orders")
       .then(response => {
-        console.log(response.data.data);
+        console.log(response);
         this.setState({
-          drinks: response.data.data
+          orders: response.data.data
         });
       })
       .catch(err => {
@@ -25,7 +25,7 @@ class OrderSummary extends Component {
       });
     // await console.log(this.state.drinks);
     this.setState({ loaded: true });
-  }
+  };
 
   removeDrink = event => {
     event.preventDefault();
@@ -118,10 +118,16 @@ class OrderSummary extends Component {
   render() {
     return (
       <div>
-        <h1>Edit Drinks</h1>
         <h1>Drinkson</h1>
-        {this.state.drinks.map((drink, index) => (
-          <div className="row border">
+        {this.state.orders.map((order,index) =>
+        <div className="row"> 
+          <div className="col">
+          {order.name}
+          </div>
+          <div className="row">
+            {/* <div className="col-md-8"> */}
+            {order.order.map((drink, index) =>
+            <div class="row">
             <div className="col-md-2 border">
               <img
                 className="w-100"
@@ -129,50 +135,35 @@ class OrderSummary extends Component {
                 alt={drink.drinkName}
               />
             </div>
-            <div className="col-md-8">
-              <h1>{drink.drinkName}</h1>
-              {drink.ingredients.map((ingredient, i) => (
-                <div className="row">
-                  <div className="col-md-8">{ingredient.name}</div>
-                  <div className="col-md-1">
-                    <Button
-                      color="success"
-                      id={index}
-                      name={i}
-                      value="+"
-                      onClick={this.changeMeasure}
-                    >
-                    </Button>
-                  </div>
-                  <div className="col-md-2">{ingredient.measure}</div>
-                  <div className="col-md-1">
-                    <Button
-                      color="success"
-                      id={index}
-                      name={i}
-                      value="-"
-                      onClick={this.changeMeasure}
-                    >
-                    </Button>
-                  </div>
-                </div>
-              ))}
+            <div className="col-md-10">
+              <div className="row">
+              <div className="col-md-4">
+                <h1>{drink.drinkName}</h1>
+              </div>
+              <div className="col-md-2">
+                {drink.ingredients.map((ingredient, i) => 
+                    <div>
+                      <div className="col">
+                        {ingredient.measure}{" "}{ingredient.name}
+                      </div>
+                    </div>
+                    )}
+              </div>
+              <div className="col-md-5">
+                {drink.instructions}
+              </div>
+              </div>
             </div>
-            <div className="col-md-2">
-              <button
-                className=" btn btn-danger"
-                id={index}
-                onClick={this.removeDrink}
-              >
-                Remove
-              </button>
             </div>
+            )}
+          {/* </div> */}
+          )}
           </div>
-        ))}
-        <CheckoutBtn handleFormSubmit={this.handleFormSubmit} />
-      </div>
-    );
+          </div>
+        )}
+        </div>
+    )
   }
 }
 
-export default OrderSummary;
+export default Bartender;

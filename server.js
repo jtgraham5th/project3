@@ -44,13 +44,13 @@ connection.on("error", err => {
   console.log("Mongoose default connection error: " + err);
 });
 
-app.get("/api/cars/:id", function(req, res) {
-  db.Tesla.findById(req.params.id)
-    .then(singleTesla => {
+app.get("/bartender/orders", function(req, res) {
+  db.Order.find({})
+    .then(allOrders => {
       res.json({
-        message: "Requested all Teslas",
+        message: "Requested all Orders",
         error: false,
-        data: singleTesla
+        data: allOrders
       });
     })
     .catch(err => {
@@ -81,6 +81,24 @@ app.get("/order-summary", function(req, res) {
     });
 });
 
+app.post("/order-summary", function(req, res) {
+  db.Order.create(req.body)
+    .then(newOrder => {
+      console.log("New Order: ", newOrder);
+      res.json({
+        message: "Successfully created",
+        error: false,
+        data: newOrder
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.json({
+        message: err.message,
+        error: true
+      });
+    });
+});
 app.delete("/order-summary/drink/:id", function(req, res) {
   db.Drink.deleteOne({ _id: req.params.id })
     .then(response => {

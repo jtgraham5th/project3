@@ -1,6 +1,5 @@
 import React from "react";
 import "./style.css";
-// import { Button } from 'reactstrap'
 
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
 function CheckoutBtn(props) {
