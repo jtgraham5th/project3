@@ -2,10 +2,10 @@ var mongoose = require("mongoose");
 
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
-
-
-
-
+var ingredientSchema = new Schema({
+  name: String,
+  measure: String
+});
 var DrinkSchema = new Schema({
 
   model: {
@@ -20,10 +20,14 @@ var DrinkSchema = new Schema({
     type: Number,
     required: true
   },
-  imageURL: {
+  ingredients: [ingredientSchema],
+  glass: {
     type: String,
-    required: true,
-    default: "http://blog.logomyway.com/wp-content/uploads/2019/06/tesla-logo.jpg"
+    required: false
+  },
+  instructions: {
+    type: String,
+    required: true
   }
 });
 

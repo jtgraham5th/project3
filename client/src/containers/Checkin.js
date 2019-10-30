@@ -1,20 +1,28 @@
-import React, { Component } from "react";
+// // import React, { Component } from "react";
 
 
-class checkin extends Component {
+import React from "react";
+import { geolocation } from "react-geolocated";
+
+
+class LoggingButton extends React.Component {
+  handleClick() {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log(position.coords.latitude, position.coords.longitude);
+    });
+
+  }
+
   render() {
+    // This syntax ensures `this` is bound within handleClick
     return (
-      <div>
-        <h1>Check In Page</h1>
-        <div>
-          <button>Check In</button>
+      <button onClick={(e) => this.handleClick(e)}>
+        Click me
+      </button>
 
-          <button>Check-Out</button>
-        </div>
-      </div>
     );
   }
 }
+export default LoggingButton
 
-
-export default checkin;
+// 
