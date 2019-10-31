@@ -110,7 +110,7 @@ class OrderDrinks extends Component {
             </div>
           </div>
         ))}
-        <OrderBtn />     </div>
+        <OrderBtn /> </div>
     );
   }
 }

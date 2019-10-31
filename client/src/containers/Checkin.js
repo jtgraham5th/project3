@@ -2,7 +2,7 @@
 
 
 import React from "react";
-import { geolocation } from "react-geolocated";
+// import { geolocation } from "react-geolocated";
 
 
 class LoggingButton extends React.Component {
@@ -16,9 +16,14 @@ class LoggingButton extends React.Component {
   render() {
     // This syntax ensures `this` is bound within handleClick
     return (
-      <button onClick={(e) => this.handleClick(e)}>
+      <div>
+        <p>Welcome to the Checkin in Page</p>
+
+        <button onClick={(e) => this.handleClick(e)}>
         Click me
       </button>
+      </div>
+      
 
     );
   }
