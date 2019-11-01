@@ -3,21 +3,20 @@ import "./style.css";
 // import { Button } from 'reactstrap'
 
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
-function CheckinBtn(props) {
+function CheckoutBtnLB(props) {
   return (
     <div>
       {/* <a href=""> */}
         <button
           type="button"
           className="btn btn-primary btn-lg btn-block"
-          onClick={props.checkin}
-          id={props.index}
+          onClick={props.checkout}
         >
-          Check In
+          Checkout
         </button>
       {/* </a> */}
     </div>
   );
 }
 
-export default CheckinBtn;
+export default CheckoutBtnLB;
