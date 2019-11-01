@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Axios from "axios";
 import GoogleMapReact from 'google-map-react';
-import MapFlag from "../components/MapFlag"
+import MapFlag from "../components/MapFlag/MapFlag"
 // const AnyReactComponent = ({ text }) => <div style={{ color: 'red'}}>{text}</div>;
 
 // API key AIzaSyAlHrNlmCS8c70eIYOlfkD6JijDgE5sfOc
@@ -15,7 +15,7 @@ class Bars extends Component {
       lat: 33.7756,
       lng: -84.3963
     },
-    zoom: 11
+    zoom: 15
   };
   componentDidMount() {
 
@@ -24,6 +24,11 @@ class Bars extends Component {
   
     // https://maps.googleapis.com/maps/api/place/textsearch/json?query=bars&location=-84.39,33.77&radius=100&key=AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA
     
+    // const marker = new google.maps.Marker({
+    //   map: map,
+    //   position: this.state.c
+    //   icon: icon_to_use  
+    // });
     
     Axios
     .get (proxyurl + mapsurl)
