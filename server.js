@@ -59,7 +59,7 @@ app.get("/bartender/orders", function(req, res) {
         message: err.message,
         error: true
       });
-    });
+    }); 
 });
 
 app.get("/order-summary", function(req, res) {

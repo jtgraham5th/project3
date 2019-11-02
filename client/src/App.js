@@ -1,6 +1,7 @@
 
 import React, { Component } from "react";
 import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from "./components/Navbar";
 import Register from "./containers/Register";
 import Login from "./containers/Login";

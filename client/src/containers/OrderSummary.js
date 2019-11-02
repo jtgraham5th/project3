@@ -119,7 +119,6 @@ class OrderSummary extends Component {
     return (
       <div>
         <h1>Edit Drinks</h1>
-        <h1>Drinkson</h1>
         {this.state.drinks.map((drink, index) => (
           <div className="row border">
             <div className="col-md-2 border">
