@@ -1,6 +1,5 @@
 const K_WIDTH = 80;
 const K_HEIGHT = 80;
-// const icon = "file:///Users/ryan/Desktop/bar%20icon.png"
 const MapFlagStyle = {
   // initially any map object has left top corner at lat lng coordinates
   // it's on you to set object origin to 0,0 coordinates

@@ -1,21 +1,18 @@
-import React, {Component} from 'react';
-// import shouldPureComponentUpdate from 'react-pure-render/function';
+import React, { Component } from "react";
 
-import {MapFlagStyle} from './MapFlagStyle';
+import { MapFlagStyle } from "./MapFlagStyle";
 
 export default class MapFlag extends Component {
-  
-
-  
-
-//   shouldComponentUpdate = shouldPureComponentUpdate;
-
   render() {
     return (
-       <div style={MapFlagStyle}>
-          {this.props.text}
-          <img src= "http://cdn.onlinewebfonts.com/svg/img_37413.png" className = "w-50" alt="bar icons"/>
-       </div>
+      <div style={MapFlagStyle}>
+        {this.props.text}
+        <img
+          src="http://cdn.onlinewebfonts.com/svg/img_37413.png"
+          className="w-50"
+          alt="bar icons"
+        />
+      </div>
     );
   }
 }
