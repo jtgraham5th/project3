@@ -88,8 +88,7 @@ class Bartender extends Component {
     const index = event.target.id
     let orders = this.states.orders;
     orders[index].completed = true
-    this.setState(state => {(orders)}
-    );
+    this.setState({orders});
     console.log(this.state.orders)
 
     axios
