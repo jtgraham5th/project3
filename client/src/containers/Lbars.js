@@ -51,6 +51,7 @@ class Bars extends Component {
           defaultZoom={this.props.zoom}
         >{this.state.bars.map((bar,index) =>(
           <MapFlag
+            key={index}
             lat={bar.geometry.location.lat}
             lng={bar.geometry.location.lng}
             text={bar.name}
