@@ -14,6 +14,7 @@ export default class MapFlag extends Component {
     return (
        <div style={MapFlagStyle}>
           {this.props.text}
+          <img src= "http://cdn.onlinewebfonts.com/svg/img_37413.png" className = "w-50"/>
        </div>
     );
   }
