@@ -42,7 +42,17 @@ var OrderSchema = new Schema({
     type: String,
     required: true
   },
-  order: [drinkSchema]
+  order: [drinkSchema],
+  accepted: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
+  completed: {
+    type: Boolean,
+    required: true,
+    default: false
+  }
 });
 
 // This creates our model from the above schema, using mongoose's model method

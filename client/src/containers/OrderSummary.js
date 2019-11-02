@@ -87,7 +87,7 @@ class OrderSummary extends Component {
     event.preventDefault();
     console.log(this.state.drinks);
     event.preventDefault();
-    const id = event.target.id;
+    // const id = event.target.id;
     const newOrder = {
       name: "Jimmy",
       order: this.state.drinks

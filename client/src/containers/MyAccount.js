@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import axios from "axios";
-import BarAcceptOrderBtn from "../components/BarAcceptOrderBtn";
-import BarCompleteOrderBtn from "../components/BarCompleteOrderBtn"
-// import { Button } from 'reactstrap'
+import CheckoutBtn from "../components/CheckoutBtn";
+import { Button } from 'reactstrap'
 
 // import { Link } from "react-router-dom";
 
 class Bartender extends Component {
   state = {
     orders: [],
-    accepted: false,
-    completed: false
+    loaded: false
   };
 
   componentDidMount() {
@@ -55,69 +53,41 @@ class Bartender extends Component {
       }
     }
   };
-  
-  acceptOrder = (event) => {
-    event.preventDefault(); 
-    const orderId = event.target.id;
-    let orders = this.state.orders;
-    orders[orderId].accepted = true;
-    this.setState({orders}, () => {
-      console.log(this.state.orders);
-    });
-    // this.setState(state => {
-      
-    //   const list1 = state.orders.map((item, j) => {
-    //     if (parseInt(orderId) === parseInt(j)) {
-    //         item.accepted = true;
-    //         console.log(item);
-    //         return item;
-    //     } else {
-    //         return item;
-    //     }
-    //   });
-    //   console.log(list1);
-    //   return list1;
-    //   // this.props.history.push("/summary");
-    // });
-  };
-  
-  completeOrder = event => {
-    event.preventDefault();
-    console.log(this.state.orders)
-    const orderId = event.target.orderId;
-    const index = event.target.id
-    let orders = this.states.orders;
-    orders[index].completed = true
-    this.setState(state => {(orders)}
-    );
-    console.log(this.state.orders)
 
-    axios
-      .put(`/bartender/orders/${orderId}`, this.state.orders[index])
-      .then(response => {
-        console.log(response);
-        if (response.data.error) {
-          alert("Failed to create" + response.data.message);
+  changeMeasure = event => {
+    const { name, id, value } = event.target;
+    this.setState(state => {
+      const list1 = state.drinks.map((item, j) => {
+        if (parseInt(id) === parseInt(j)) {
+          console.log(item);
+          const list2 = item.ingredients.map((ingredient, i) => {
+            if (parseInt(i) === parseInt(name)) {
+              if (value === "+") {
+                ingredient["measure"] = parseInt(ingredient.measure) + 1;
+              } else if (value === "-") {
+                ingredient["measure"] = parseInt(ingredient.measure) - 1;
+              }
+              return ingredient;
+            } else {
+              return ingredient;
+            }
+          });
+          return list2;
         } else {
-          this.props.history.push("/collection/" + response.data.data._id);
+          return item;
         }
-      })
-      .catch(err => {
-        console.log(err);
-      });      
-    }
-  
-  
-  // axios
-  // .put(`/bartender/orders/${}`)
-  // };
-  
+      });
+      console.log(list1);
+      return list1;
+      // this.props.history.push("/summary");
+    });
+  };
 
   handleFormSubmit = event => {
     event.preventDefault();
     console.log(this.state.drinks);
     event.preventDefault();
-    // const id = event.target.id;
+    const id = event.target.id;
     const newOrder = {
       name: "Jimmy",
       order: this.state.drinks
@@ -150,14 +120,12 @@ class Bartender extends Component {
       <div>
         <h1>Drinkson</h1>
         {this.state.orders.map((order,index) =>
-        
-        <div className="row-fluid" key={index}>
-          <div>{order.accepted ?  (<div> 
+        <div className="row-fluid"> 
           <div className="col">
-          <h1>{order.name}</h1>
+          {order.name}
           </div>
             {order.order.map((drink, index) =>
-            <div className="row border">
+            <div class="row">
               <div className="col-md-2 border">
                 <img
                   className="w-100"
@@ -174,7 +142,7 @@ class Bartender extends Component {
               </div>
               <div className="col-md-3">
                 {drink.ingredients.map((ingredient, i) => 
-                    <div key={i}>
+                    <div>
                       <div className="col">
                         <h5>{ingredient.measure}{" "}{ingredient.name}</h5>
                       </div>
@@ -182,9 +150,8 @@ class Bartender extends Component {
                     )}
               </div>
             </div>
-            )}<BarCompleteOrderBtn index={index} orderId={order._id} completeOrder={this.completeOrder}/>
-            </div>) : (<BarAcceptOrderBtn orderName={order.name} numOfDrinks={order.order.length} index={index} acceptOrder={this.acceptOrder}
-/>)}</div>
+            )}
+          )}
           </div>
         )}
         </div>
