@@ -61,10 +61,15 @@ class Bars extends Component {
     });   
   }
 
-  // checkout = event => {
-  //   event.preventDefault();
-  //   if(this.bar)
-  // }
+  checkout = event => {
+    event.preventDefault();
+    
+    
+    this.setState({currentBars: []});
+    
+   
+    
+  }
 
   // handleFormSubmit = event => {
   //   event.preventDefault();
@@ -82,7 +87,7 @@ class Bars extends Component {
   render() {
     return (
       <div>
-        <div style={{ height: "100vh", width: "75%" }}>
+        <div style={{ height: "100vh", width: "100%" }}>
           <GoogleMapReact
             bootstrapURLKeys={{
               key: "AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA"
@@ -101,7 +106,7 @@ class Bars extends Component {
         </div>
         <Container fluid>
           <Row>
-            <Col size="md-6">
+            <Col size="md-6" >
               <h1>Local Bars to Search</h1>
               <List>
               <div>
