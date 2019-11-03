@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Axios from "axios";
 import GoogleMapReact from "google-map-react";
-import MapFlag from "../components/MapFlag";
+import MapFlag from "../components/MapFlag/MapFlag";
 import CheckinBtn from "../components/CheckinBtn";
 import CheckoutBtnLB from "../components/CheckOutBtnLB";
 import API from "../utils/API";
