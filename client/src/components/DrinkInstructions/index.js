@@ -8,24 +8,25 @@ const DrinkInstructions = (props) => {
   const {
     buttonLabel,
     className,
-    instructions
+    instructions,
+    drinkname
   } = props;
 
   const [modal, setModal] = useState(false);
+  const [backdrop] = useState(true);
 
   const toggle = () => setModal(!modal);
 
   return (
     <div>
       <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+      <Modal isOpen={modal} toggle={toggle} className={className} backdrop={backdrop}>
+        <ModalHeader toggle={toggle}>How to make {drinkname}</ModalHeader>
         <ModalBody>
           {instructions}
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
-          <Button color="secondary" onClick={toggle}>Cancel</Button>
+          <Button color="secondary" onClick={toggle}>Exit</Button>
         </ModalFooter>
       </Modal>
     </div>

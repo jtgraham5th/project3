@@ -97,9 +97,8 @@ class Bartender extends Component {
                             <div className="col-md-5">
                               <div className="row">
                                 <h2>{drink.drinkName}</h2>
-                                <hr></hr>
-                                <DrinkInstructions buttonlabel="Instructions" instructions={drink.instructions}/>
                               </div>
+                              <DrinkInstructions buttonLabel="Instructions" className="bg-dark" drinkname={drink.drinkName} instructions={drink.instructions}/>
                             </div>
                             <div className="col-md-3">
                               {drink.ingredients.map((ingredient, i) => (
