@@ -103,16 +103,20 @@ class OrderSummary extends Component {
         console.log(err);
         alert("Failed to create: " + err.message)
       });
-    //     "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" +
-    //       this.state.searchQuery
-    //   )
-    //   .then(drinks => {
-    //     console.log(drinks);
-    //     this.setState({ drinks: drinks.data.drinks });
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+
+    this.state.drinks.map((drink, i) => {
+      axios
+        .delete(`/order-summary/drink/${drink._id}`)
+        .then(response => {
+          console.log(response);
+          this.props.history.push("/summary");
+        })
+        .catch(err => {
+          console.log(err);
+          alert("Failed to create: " + err.message);
+      });
+    })      
+    this.setState({ drinks: [] });
   };
 
   render() {

@@ -8,7 +8,7 @@ function BarCompleteOrderBtn(props) {
       {/* <a href=""> */}
         <button
           id = {props.index}
-          orderId={props.orderId}
+          // value={props.orderid}
           type="button"
           className="btn btn-primary btn-lg btn-block"
           onClick={props.completeOrder}

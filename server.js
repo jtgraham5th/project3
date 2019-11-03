@@ -59,7 +59,25 @@ app.get("/bartender/orders", function(req, res) {
         message: err.message,
         error: true
       });
-    }); 
+    });
+});
+
+app.put("/bartender/orders/:id", function(req, res) {
+  db.Order.findByIdAndUpdate(req.params.id, req.body)
+    .then(singleOrder => {
+      res.json({
+        message: `Updated order #${singleOrder._id}`,
+        error: false,
+        data: singleOrder
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.json({
+        message: err.message,
+        error: true
+      });
+    });
 });
 
 app.get("/order-summary", function(req, res) {
