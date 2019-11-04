@@ -12,6 +12,11 @@ const db = require("./models")
 // const db = require("./config/keys").mongoURI;
 
 const app = express();
+// const server = require("http").Server(app)
+// const io = require("socket.io")(server)
+
+// server.listen(PORT, () => 
+//   console.log(`Web Socket: Listening on port ${PORT }`));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -25,8 +30,6 @@ app.use(bodyParser.json());
 
 mongoose
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
-//   .then(() => console.log("MongoDB successfully connected"))
-//   .catch(err => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
@@ -42,6 +45,19 @@ connection.on("connected", () => {
 });
 connection.on("error", err => {
   console.log("Mongoose default connection error: " + err);
+});
+
+// io.on("connection", socket => {
+//   socket.emit('news', { hello: 'world'});
+//   console.log("New client connected"), setInterval(
+//     () => getApiAndEmit(socket),
+//     10000
+//   );
+//   socket.on("disconnect", () => console.log("Client disconnected"));
+// });
+
+app.get("/", (req, res) => {
+  res.send({ response: "I am alive" }).status(200);
 });
 
 app.get("/bartender/orders", function(req, res) {
@@ -98,7 +114,23 @@ app.get("/order-summary", function(req, res) {
       });
     });
 });
-
+app.get("/order-summary/:id", function(req, res) {
+  db.Order.findById(req.params.id, req.body)
+  .then(singleOrder => {
+    res.json({
+      message: `Retrieved user order #${singleOrder._id}`,
+      error: false,
+      data: singleOrder
+    });
+  })
+  .catch(err => {
+    console.log(err);
+    res.json({
+      message: err.message,
+      error: true
+    });
+  });
+})
 app.post("/order-summary", function(req, res) {
   db.Order.create(req.body)
     .then(newOrder => {
@@ -163,3 +195,5 @@ app.get("*", (req, res) => {
 app.listen(PORT, function() {
   console.log(`App is running on http://localhost:${PORT}`);
 });
+
+

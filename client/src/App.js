@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from "./components/Navbar";
+import NavbarWdivs from "./components/NavbarWdivs";
 import Register from "./containers/Register";
 import Login from "./containers/Login";
 import OrderDrinks from "./containers/OrderDrinks";
@@ -21,7 +21,7 @@ class App extends Component {
  
     <Router>
     <div className="App">
-          <Navbar />
+          <NavbarWdivs />
     </div>
       <Switch>
         <Route path="/register" component={Register} />
