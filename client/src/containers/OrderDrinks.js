@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SearchForm from "../components/SearchForm";
-import Navbar from "../containers/Navbar";
-import { Link } from "react-router-dom";
+import OrderBtn from "../components/OrderBtn";
 
 class OrderDrinks extends Component {
   state = {
@@ -13,6 +12,50 @@ class OrderDrinks extends Component {
   componentDidMount() {
     // this.getDrinks();
   }
+  addDrink = event => {
+    event.preventDefault();
+    const id = event.target.id;
+    const newDrink = {
+      drinkId: this.state.drinks[id].idDrink,
+      drinkThumb: this.state.drinks[id].strDrinkThumb,
+      drinkName: this.state.drinks[id].strDrink,
+      ingredients: [
+        {
+          name: this.state.drinks[id].strIngredient1,
+          measure: parseInt(this.state.drinks[id].strMeasure1)
+        },
+        {
+          name: this.state.drinks[id].strIngredient2,
+          measure: parseInt(this.state.drinks[id].strMeasure2)
+        },
+        {
+          name: this.state.drinks[id].strIngredient3,
+          measure: parseInt(this.state.drinks[id].strMeasure3)
+        },
+        {
+          name: this.state.drinks[id].strIngredient4,
+          measure: parseInt(this.state.drinks[id].strMeasure4)
+        },
+        {
+          name: this.state.drinks[id].strIngredient5,
+          measure: parseInt(this.state.drinks[id].strMeasure5)
+        },
+      ],
+      glass: this.state.drinks[id].strGlass,
+      instructions: this.state.drinks[id].strInstructions
+    };
+    console.log(newDrink);
+
+    axios
+      .post("/api/new", newDrink)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+        alert("Failed to create: " + err.message);
+      });
+  };
 
   handleInputChange = event => {
     this.setState({ searchQuery: event.target.value });
@@ -21,7 +64,10 @@ class OrderDrinks extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     axios
-      .get("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + this.state.searchQuery)
+      .get(
+        "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" +
+          this.state.searchQuery
+      )
       .then(drinks => {
         console.log(drinks);
         this.setState({ drinks: drinks.data.drinks });
@@ -33,16 +79,19 @@ class OrderDrinks extends Component {
   render() {
     return (
       <div>
-        <Navbar />
         <h1>Drinkson</h1>
         <SearchForm
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
         />
-        {this.state.drinks.map((drink, i) => (
+        {this.state.drinks.map((drink, index) => (
           <div className="row border" key={drink.idDrink}>
             <div className="col-md-2 border">
-              <img className="w-100" src={drink.strDrinkThumb}></img>
+              <img
+                className="w-100"
+                src={drink.strDrinkThumb}
+                alt={drink.strDrink}
+              />
             </div>
             <div className="col-md-8">
               <h1>{drink.strDrink}</h1>
@@ -54,14 +103,14 @@ class OrderDrinks extends Component {
                 </h5>
               </p>
             </div>
-            <div class="col-md-2">
-              <Link to={"/drinks/" + drink._id}>
-                <button class="primary">Order</button>
-              </Link>
+            <div className="col-md-2">
+              <button className="primary" id={index} onClick={this.addDrink}>
+                Order
+              </button>
             </div>
           </div>
         ))}
-      </div>
+        <OrderBtn /> </div>
     );
   }
 }

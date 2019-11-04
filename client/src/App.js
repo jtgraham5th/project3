@@ -1,48 +1,77 @@
-
 import React, { Component } from "react";
-import "./App.css";
-import Navbar from "./containers/Navbar";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./utils/setAuthToken";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-import Register from "./containers/Register";
-
-import Login from "./containers/Login";
 import OrderDrinks from "./containers/OrderDrinks";
-import Home from "./containers/Home";
+
 import Checkin from "./containers/Checkin";
 import LocalBars from "./containers/Lbars";
-import Summary from './containers/Summary';
-import Edit from './containers/edit';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import OrderSummary from './containers/OrderSummary';
+import Bartender from './containers/Bartender';
+
+
+import { setCurrentUser, logoutUser } from "./actions/authActions";
+import { Provider } from "react-redux";
+import store from "./store";
+
+import Landing from "./components/layout/Landing";
+import Register from "./components/auth/Register";
+import Login from "./components/auth/Login";
+import Navbar from "./components/Navbars/Navbar";
+import PrivateRoute from "./components/private-route/PrivateRoute";
+import Dashboard from "./components/dashboard/Dashboard";
 
 
 
+import "./App.css";
+
+// Check for token to keep user logged in
+if (localStorage.jwtToken) {
+  // Set auth token header auth
+  const token = localStorage.jwtToken;
+  setAuthToken(token);
+  // Decode token and get user info and exp
+  const decoded = jwt_decode(token);
+  // Set user and isAuthenticated
+  store.dispatch(setCurrentUser(decoded));
+  // Check for expired token
+  const currentTime = Date.now() / 1000; // to get in milliseconds
+  if (decoded.exp < currentTime) {
+    // Logout user
+    store.dispatch(logoutUser());
+
+    // Redirect to login
+    window.location.href = "./login";
+  }
+}
 class App extends Component {
   render() {
-  return (
- 
-    <Router>
-    <div className="App">
-
-          <Navbar />
-      
-         
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-        </div>
-      <Switch>
-        <Route path="/edit" component={Edit} />
-        <Route path="/Lbars" component={LocalBars} />
-        <Route path="/summary" component={Summary}/>
-        <Route path="/checkin" component={Checkin} /> 
-        <Route path="/OrderDrinks" component={OrderDrinks} />
-        <Route path="/" component={Home} />
-        
-      </Switch>
-    </Router>
-   
-  );
+    return (
+      <Provider store={store}>
+      <Router>
+      <Navbar />
+          <div className="App">
+    
+          <Route exact path="/" component={Landing} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          <Switch>
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          <Route path="/Bartender" component={Bartender} />
+          <Route path="/Bars" component={LocalBars} />
+          <Route path="/summary" component={OrderSummary}/>
+          <Route path="/checkin" component={Checkin} /> 
+          <Route path="/orderDrinks" component={OrderDrinks} />
+     
+            
+            </Switch>
+          </div>
+        </Router>
+      </Provider>
+    );
+  }
 }
-}
-
 export default App;
