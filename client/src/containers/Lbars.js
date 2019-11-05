@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Axios from "axios";
 import GoogleMapReact from "google-map-react";
-import MapFlag from "../components/MapFlag";
+import MapFlag from "../components/MapFlag/MapFlag";
 import CheckinBtn from "../components/CheckinBtn";
 import CheckoutBtnLB from "../components/CheckOutBtnLB";
 import API from "../utils/API";
@@ -21,13 +21,11 @@ class Bars extends Component {
       lat: 33.7756,
       lng: -84.3963
     },
-    zoom: 11
+    zoom: 15
   };
   componentDidMount() {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     const mapsurl = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=bars+in+Atlanta&key=AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA`;
-
-    // https://maps.googleapis.com/maps/api/place/textsearch/json?query=bars&location=-84.39,33.77&radius=100&key=AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA
 
     Axios.get(proxyurl + mapsurl).then(response => {
       console.log(response);
@@ -97,6 +95,7 @@ class Bars extends Component {
           >
             {this.state.bars.map((bar, index) => (
               <MapFlag
+                key={index}
                 lat={bar.geometry.location.lat}
                 lng={bar.geometry.location.lng}
                 text={bar.name}
@@ -150,31 +149,3 @@ class Bars extends Component {
 }
 
 export default Bars;
-
-//MAPS API
-
-//get the user location from storage
-// const location = getUserLocation();
-
-//call the api with the user specific location
-
-// $.ajax({
-//     url: proxyurl + mapsurl,
-//     method: "GET"
-// }).then(function(response) {
-//     var apiResults = response.results;
-//     console.log(apiResults);
-//     var limitedResults = apiResults.slice(0, 5);
-//     //get the table body and save it a JQuery object
-//     var barsTableBody = $('#bars-table-body');
-//     //loop through the result
-//     limitedResults.forEach(function(result) {
-//         places.push({
-//           CurrentLocation.defaultProps = {
-//             zoom: 14,
-//             initialCenter: {
-//               lat: -1.2884,
-//               lng: 36.8233
-//             },
-
-//         });

@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Button } from 'reactstrap';
 import CheckoutBtn from "../components/CheckoutBtn";
+import { Button } from 'reactstrap'
+
 // import { Link } from "react-router-dom";
+let userId = ""
 
 class OrderSummary extends Component {
   state = {
     drinks: [],
-    loaded: false
+    currentOrder: []
   };
 
   componentDidMount() {
@@ -22,8 +24,18 @@ class OrderSummary extends Component {
       .catch(err => {
         console.log(err);
       });
-    // await console.log(this.state.drinks);
-    this.setState({ loaded: true });
+      axios
+      .get(`/order-summary/${userId}`)
+      .then(response => {
+        console.log(response.data.data);
+        this.setState({
+          currentOrder: response.data.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
   }
 
   removeDrink = event => {
@@ -83,26 +95,48 @@ class OrderSummary extends Component {
   };
 
   handleFormSubmit = event => {
-    console.log("work dammit");
     event.preventDefault();
+    console.log(this.state.drinks);
+    event.preventDefault();
+    // const id = event.target.id;
+    const newOrder = {
+      name: "Jimmy",
+      order: this.state.drinks
+    };
+    console.log(newOrder);
     
-    // axios
-    //   .get(
-    //     "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" +
-    //       this.state.searchQuery
-    //   )
-    //   .then(drinks => {
-    //     console.log(drinks);
-    //     this.setState({ drinks: drinks.data.drinks });
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+    axios
+      .post("/order-summary", newOrder)
+      .then(response => {
+        console.log(response.data.data._id);
+        userId = response.data.data._id
+      })
+      .catch(err => {
+        console.log(err);
+        alert("Failed to create: " + err.message)
+      });
+
+    this.state.drinks.map((drink, i) => {
+      axios
+        .delete(`/order-summary/drink/${drink._id}`)
+        .then(response => {
+          console.log(response);
+          this.props.history.push("/summary");
+        })
+        .catch(err => {
+          console.log(err);
+          alert("Failed to create: " + err.message);
+      });
+    })      
+    this.setState({ drinks: [] });
   };
 
   render() {
     return (
       <div>
+        {this.state.currentOrder.length > 0 ? (<div>
+        {this.state.currentOrder.map((order,index) => (
+          <div>{order.drinkName}</div>))}</div>) : (<div></div>)}
         <h1>Edit Drinks</h1>
         {this.state.drinks.map((drink, index) => (
           <div className="row border">
@@ -126,7 +160,6 @@ class OrderSummary extends Component {
                       value="+"
                       onClick={this.changeMeasure}
                     >
-                      <span aria-hidden>&lsaquo</span>
                     </Button>
                   </div>
                   <div className="col-md-2">{ingredient.measure}</div>
@@ -138,7 +171,6 @@ class OrderSummary extends Component {
                       value="-"
                       onClick={this.changeMeasure}
                     >
-                      <span aria-hidden>&rsaquo</span>
                     </Button>
                   </div>
                 </div>
@@ -155,7 +187,7 @@ class OrderSummary extends Component {
             </div>
           </div>
         ))}
-        <CheckoutBtn />
+        <CheckoutBtn handleFormSubmit={this.handleFormSubmit} />
       </div>
     );
   }

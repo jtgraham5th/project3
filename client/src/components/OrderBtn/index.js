@@ -9,7 +9,7 @@ function OrderBtn(props) {
         <button
           type="button"
           className="btn btn-primary btn-lg btn-block fixed-bottom"
-          onClick={props.handleFormSubmit}
+          // onClick={props.handleFormSubmit}
         >
           Order Drinks
         </button>

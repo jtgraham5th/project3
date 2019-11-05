@@ -2,6 +2,7 @@
 
 module.exports = {
   Drink: require("./Drink"),
-  User: require("./User")
+  User: require("./User"),
+  Order: require("./Order")
   // Note: require("./Note")
 };
