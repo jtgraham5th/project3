@@ -10,6 +10,7 @@ import bar from "../assets/bars-lights.jpg";
 class Home extends Component {
   render() {
     return (
+      
       <Jumbotron fluid>
         <Container className ="col" style={{backgroundColor:"red"}}>
         <div className ="col" style={{textAlign:"center", margin: "auto"}}>
@@ -33,6 +34,7 @@ class Home extends Component {
           <div className="col"></div>
         </div>
       </Jumbotron>
+      
     );
   }
 }
