@@ -1,15 +1,9 @@
-html, 
-body {   
-  height: 100%; 
-} 
-body { 
-  display: flex;   
-  flex-direction: column; 
-}
- 
-.content { 
-  flex: 1 0 auto; 
-} 
-.footer {   
-  flex-shrink: 0; 
-}
+form.search {
+    overflow: auto;
+    margin-bottom: 10px;
+  }
+  
+  form.search button[type="submit"] {
+    float: right;
+    margin-top: 10px;
+  }

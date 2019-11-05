@@ -1,6 +1,4 @@
 const mongoose = require("mongoose");
-
-// Save a reference to the Schema constructor
 const Schema = mongoose.Schema;
 
 // Create Schema
@@ -22,8 +20,5 @@ const UserSchema = new Schema({
     default: Date.now
   }
 });
-const User = mongoose.model("Users", UserSchema);
 
-// Export the Article model
-module.exports = User;
-
+module.exports = User = mongoose.model("users", UserSchema);

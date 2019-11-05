@@ -1,15 +1,15 @@
-require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const path = require("path");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 // const users = require("./routes/api/users");
 
 const PORT = process.env.PORT || 3001;
 
-const db = require("./models")
+// const db = require("./models")
 // const db = require("./config/keys").mongoURI;
+
+const users = require("./routes/api/users");
 
 const app = express();
 // const server = require("http").Server(app)
@@ -28,17 +28,29 @@ app.use(
 );
 app.use(bodyParser.json());
 
+// mongoose
+//   .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+// DB Config
+const db = require("./config/keys").mongoURI;
+
+// Connect to MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
+  .connect(
+    db,
+    { useNewUrlParser: true }
+  )
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
+
 // Passport config
 require("./config/passport")(passport);
+
 // Routes
 // app.use("/api/users", users);
 
-const connection = mongoose.connection;
 
 connection.on("connected", () => {
   console.log("Mongoose connected successfully");
@@ -197,3 +209,6 @@ app.listen(PORT, function() {
 });
 
 
+// const port = process.env.PORT || 8080;
+
+// app.listen(port, () => console.log(`Server up and running on port ${port} !`));
