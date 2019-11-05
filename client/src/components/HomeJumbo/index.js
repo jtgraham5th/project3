@@ -15,9 +15,30 @@ const HomeJumbo = props => {
             A way for User's to create an Order with a Bartender and Skip the
             Line.
           </p>
-          <Link to="/register">
-              <button className="btn btn-secondary">Sign Up or Login</button>
+          <Link 
+            to="/register"
+            style={{
+              width: "140px",
+              borderRadius: "3px",
+              letterSpacing: "1.5px"
+            }}
+            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            >
+              Register
+              {/* <button className="btn btn-secondary">Sign Up or Login</button> */}
           </Link>
+          <Link
+                to="/login"
+                style={{
+                  width: "140px",
+                  borderRadius: "3px",
+                  letterSpacing: "1.5px"
+                }}
+                className="btn btn-large btn-flat waves-effect white black-text"
+              >
+                Log In
+              </Link>
+
 
         </Container>
       </Jumbotron>

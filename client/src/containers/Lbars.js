@@ -103,20 +103,6 @@ class Bars extends Component {
             ))}
           </GoogleMapReact>
         </div>
-        <h1>Local Bars to Search</h1>
-        <div>
-          {this.state.bars.map((bar, index) => (
-            <div className="row border" key={bar.id}>
-              <div className="col-md-8">
-                <h1>{bar.name}</h1>
-                <h5>{bar.formatted_address}</h5>
-              </div>
-            </div>
-          ))}
-          <form>
-            <p>Bars </p>
-          </form>
-        </div>
         <Container fluid>
           <Row>
             <Col size="md-6" >

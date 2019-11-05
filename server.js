@@ -3,10 +3,10 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 // const users = require("./routes/api/users");
-
+// const path = 
 const PORT = process.env.PORT || 3001;
 
-// const db = require("./models")
+const models = require("./models")
 // const db = require("./config/keys").mongoURI;
 
 const users = require("./routes/api/users");
@@ -52,12 +52,12 @@ require("./config/passport")(passport);
 // app.use("/api/users", users);
 
 
-connection.on("connected", () => {
-  console.log("Mongoose connected successfully");
-});
-connection.on("error", err => {
-  console.log("Mongoose default connection error: " + err);
-});
+// connection.on("connected", () => {
+//   console.log("Mongoose connected successfully");
+// });
+// connection.on("error", err => {
+//   console.log("Mongoose default connection error: " + err);
+// });
 
 // io.on("connection", socket => {
 //   socket.emit('news', { hello: 'world'});
@@ -73,7 +73,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/bartender/orders", function(req, res) {
-  db.Order.find({})
+  models.Order.find({})
     .then(allOrders => {
       res.json({
         message: "Requested all Orders",
@@ -91,7 +91,7 @@ app.get("/bartender/orders", function(req, res) {
 });
 
 app.put("/bartender/orders/:id", function(req, res) {
-  db.Order.findByIdAndUpdate(req.params.id, req.body)
+  models.Order.findByIdAndUpdate(req.params.id, req.body)
     .then(singleOrder => {
       res.json({
         message: `Updated order #${singleOrder._id}`,
@@ -109,7 +109,7 @@ app.put("/bartender/orders/:id", function(req, res) {
 });
 
 app.get("/order-summary", function(req, res) {
-  db.Drink.find({})
+  models.Drink.find({})
     .then(allDrinks => {
       console.log(allDrinks);
       res.json({
@@ -127,7 +127,7 @@ app.get("/order-summary", function(req, res) {
     });
 });
 app.get("/order-summary/:id", function(req, res) {
-  db.Order.findById(req.params.id, req.body)
+  models.Order.findById(req.params.id, req.body)
   .then(singleOrder => {
     res.json({
       message: `Retrieved user order #${singleOrder._id}`,
@@ -144,7 +144,7 @@ app.get("/order-summary/:id", function(req, res) {
   });
 })
 app.post("/order-summary", function(req, res) {
-  db.Order.create(req.body)
+  models.Order.create(req.body)
     .then(newOrder => {
       console.log("New Order: ", newOrder);
       res.json({
@@ -162,7 +162,7 @@ app.post("/order-summary", function(req, res) {
     });
 });
 app.delete("/order-summary/drink/:id", function(req, res) {
-  db.Drink.deleteOne({ _id: req.params.id })
+  models.Drink.deleteOne({ _id: req.params.id })
     .then(response => {
       // console.log(response);
       res.json({
@@ -180,7 +180,7 @@ app.delete("/order-summary/drink/:id", function(req, res) {
     });
 });
 app.post("/api/new", function(req, res) {
-  db.Drink.create(req.body)
+  models.Drink.create(req.body)
     .then(newDrink => {
       console.log("New Drink: ", newDrink);
       res.json({

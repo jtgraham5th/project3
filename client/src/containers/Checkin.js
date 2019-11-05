@@ -1,38 +1,36 @@
-<<<<<<< HEAD
-// // import React, { Component } from "react";
+// import React, { Component } from "react";
 
 
-import React from "react";
+// import React from "react";
 // import { geolocation } from "react-geolocated";
 
 
-class LoggingButton extends React.Component {
-  handleClick() {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      console.log(position.coords.latitude, position.coords.longitude);
-    });
+// class LoggingButton extends React.Component {
+//   handleClick() {
+//     navigator.geolocation.getCurrentPosition(function(position) {
+//       console.log(position.coords.latitude, position.coords.longitude);
+//     });
 
-  }
+//   }
 
-  render() {
-    // This syntax ensures `this` is bound within handleClick
-    return (
-      <div>
-        <p>Welcome to the Checkin in Page</p>
+//   render() {
+//     // This syntax ensures `this` is bound within handleClick
+//     return (
+//       <div>
+//         <p>Welcome to the Checkin in Page</p>
 
-        <button onClick={(e) => this.handleClick(e)}>
-        Click me
-      </button>
-      </div>
+//         <button onClick={(e) => this.handleClick(e)}>
+//         Click me
+//       </button>
+//       </div>
       
 
-    );
-  }
-}
-export default LoggingButton
+//     );
+//   }
+// }
+// export default LoggingButton
 
 // 
-=======
 // import React, { Component } from "react";
 
 
@@ -85,4 +83,3 @@ const Expandable = () => (
   </Card>
 );
 export default Expandable;
->>>>>>> 6b8fc99686ee82d0a0f66f3d465c82f1b00f275d
