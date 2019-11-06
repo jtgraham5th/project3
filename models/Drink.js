@@ -8,16 +8,16 @@ var ingredientSchema = new Schema({
 });
 var DrinkSchema = new Schema({
 
-  model: {
+  drinkId: {
     type: String,
     required: true
   },
-  color: {
+  drinkThumb: {
     type: String,
     required: true
   },
-  year: {
-    type: Number,
+  drinkName: {
+    type: String,
     required: true
   },
   ingredients: [ingredientSchema],
