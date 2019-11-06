@@ -85,7 +85,7 @@ class Bars extends Component {
   render() {
     return (
       <div>
-        <div style={{ height: "100vh", width: "100%" }}>
+        <div style={{ height: "50vh", width: "100%" }}>
           <GoogleMapReact
             bootstrapURLKeys={{
               key: "AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA"
