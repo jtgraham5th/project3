@@ -20,6 +20,7 @@ import store from "./store";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+
 import Navbar from "./components/Navbars/Navbar";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
@@ -51,9 +52,10 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-      <Router>
       <Navbar />
-          <div className="App">
+      
+      <Router>
+         
     
           <Route exact path="/" component={Landing} />
           <Route exact path="/register" component={Register} />
@@ -68,7 +70,7 @@ class App extends Component {
      
             
             </Switch>
-          </div>
+          
         </Router>
       </Provider>
     );
