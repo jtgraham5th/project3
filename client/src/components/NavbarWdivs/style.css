@@ -7,3 +7,11 @@ form.search button[type="submit"] {
   float: right;
   margin-top: 10px;
 }
+
+/* .navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.navbar-brand>img {
+  padding: 7px 14px;
+} */
