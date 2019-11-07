@@ -7,6 +7,7 @@ import CheckinBtn from "../components/CheckinBtn";
 import CheckoutBtnLB from "../components/CheckOutBtnLB";
 import API from "../utils/API";
 import {List} from "../components/List"
+
 // const AnyReactComponent = ({ text }) => <div style={{ color: 'red'}}>{text}</div>;
 
 // API key AIzaSyAlHrNlmCS8c70eIYOlfkD6JijDgE5sfOc

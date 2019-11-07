@@ -128,6 +128,7 @@ class Navbar extends Component {
       <nav className="top-nav" ref={node => (this.node = node)}>
       <NavItem>
       <NavLink href="/" active>Home</NavLink>
+      
     </NavItem>
         <NavItem>
           <NavLink href="/Login" active>Login</NavLink>

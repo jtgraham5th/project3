@@ -52,9 +52,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           {/* <Navbar /> */}
-          <div className="App">
-            <NavbarWdivs />
-          </div>
+          
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
@@ -66,6 +64,9 @@ class App extends Component {
             <Route path="/checkin" component={Checkin} />
             <Route path="/orderDrinks" component={OrderDrinks} />
           </Switch>
+          <div className="App">
+            <NavbarWdivs />
+          </div>
         </Router>
       </Provider>
     );
