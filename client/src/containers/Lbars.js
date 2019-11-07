@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import { Col, Row, Container } from "../components/Grid";
+import TopNav from "../components/TopNavbar";
+import NavbarWdivs from "../components/NavbarWdivs";
 import Axios from "axios";
 import GoogleMapReact from "google-map-react";
 import MapFlag from "../components/MapFlag/MapFlag";
 import CheckinBtn from "../components/CheckinBtn";
 import CheckoutBtnLB from "../components/CheckOutBtnLB";
 import API from "../utils/API";
-import {List} from "../components/List"
-import TopNav from "../components/TopNavbar";
-import NavbarWdivs from "../components/NavbarWdivs";
+import { Col, Row, Jumbotron, Container } from 'reactstrap';
 
+import { ListGroup, ListGroupItem } from 'reactstrap';
 // const AnyReactComponent = ({ text }) => <div style={{ color: 'red'}}>{text}</div>;
 
 // API key AIzaSyAlHrNlmCS8c70eIYOlfkD6JijDgE5sfOc
@@ -24,7 +24,7 @@ class Bars extends Component {
       lat: 33.7756,
       lng: -84.3963
     },
-    zoom: 15
+    zoom: 10
   };
   componentDidMount() {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
@@ -85,13 +85,15 @@ class Bars extends Component {
   // };
 
   // bar.formatedaddress
+
   render() {
     return (
-<>
+      <>
       <div>
      <TopNav />
-     <NavbarWdivs />
-        <div style={{ height: "50vh", width: "100%" }}>
+    
+      <Jumbotron fluid>
+      <Container fluid>
           <GoogleMapReact
             bootstrapURLKeys={{
               key: "AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA"
@@ -108,51 +110,58 @@ class Bars extends Component {
               />
             ))}
           </GoogleMapReact>
-        </div>
-        <Container fluid>
+      
+          </Container>
+        </Jumbotron>
+      </div>
+
+        <Container className="list" fluid>
           <Row>
             <Col size="md-6" >
-              <h1>Local Bars to Search</h1>
-              <List>
-              <div>
+              <h3>Local Bars to Search</h3>
+              <ListGroup>
+              <ListGroupItem>
                 {this.state.bars.map((bar, index) => (
                   <div className="row border" key={bar.id}>
                     <div className="col-md-8">
-                      <h1>{bar.name}</h1>
-                      <h5>{bar.formatted_address}</h5>
+                    <h5>{bar.name}</h5>
+                    <p>{bar.formatted_address}</p>
                     </div>
                     <CheckinBtn checkin={this.checkin} index={index}/>
                   </div>
                 ))}
                 
-              </div>
-              </List>
+              
+              </ListGroupItem>
+              </ListGroup>
             </Col>
           
             <Col size="md-6 sm-12">
-              <h1>Bars You've Check-In</h1>
-              <div>
-              <List>
+              <h3>Bars You've Check-In</h3>
+              <ListGroup>
+              <ListGroupItem>
                 {this.state.currentBars.map((bar, index) => (
                   <div className="row border" key={bar.id}>
                     <div className="col-md-8">
-                      <h1>{bar.name}</h1>
-                      <h5>{bar.formatted_address}</h5>
+                      <h5>{bar.name}</h5>
+                      <p>{bar.formatted_address}</p>
                     </div>
                     <CheckoutBtnLB checkout={this.checkout}/>
                   </div>
                  
                 ))} 
-                </List>
-              </div>
+                </ListGroupItem>
+              </ListGroup>
             </Col>
           </Row>
         </Container>
         {/* <Col size="md-6"></Col> */}
-      </div>
+        <NavbarWdivs />
       </>
     );
   }
 }
 
 export default Bars;
+
+

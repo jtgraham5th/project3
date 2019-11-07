@@ -28,7 +28,7 @@ import Login from "./components/auth/Login";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import TopNav from "./components/TopNavbar";
 
-import "./App.css";
+import "./index.css";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {

@@ -22,40 +22,44 @@ library.add(
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
 function NavbarWdivs(props) {
   return (
-    <nav className="fixed-botton navbar-expand-lg navbar-light bg-light">
-      <a href="/" className="col-sm-3 border text-center h3 p-3 m-0">
-          Home
-          <FontAwesomeIcon
+
+    <nav id="bottom=nav" className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="btn-group btn-group-lg">
+          <a href="/" className="btn btn-light">Home
+          <span><FontAwesomeIcon
               icon={faHome}
-              size="2x"
+              size="fa-lg"
               // style={{ '--fa-primary-color': 'red' }}
-            />
+            /></span>
       </a>
-      <a href="/Bars" className="col-sm-3 border text-center h3 p-3 m-0">
+      <a href="/Bars" className="btn btn-light">
           Bars
           <FontAwesomeIcon
               icon={faWineGlass}
-              size="2x"
+              size="fa-lg"
               // style={{ '--fa-primary-color': 'red' }}
             />
       </a>
-      <a href="/OrderDrinks" className="col-sm-3 border text-center h3 p-3 m-0">
+      <a href="/OrderDrinks" className="btn btn-light">
           Order Drinks
           <FontAwesomeIcon
               icon={faCashRegister}
-              size="2x"
+              size="fa-lg"
               // style={{ '--fa-primary-color': 'red' }}
             />
       </a>
-      <a href="/Bartender" className="col-sm-3 border text-center h3 p-3 m-0">
+      <a href="/Bartender" className="btn btn-light">
           Bartender View
           <FontAwesomeIcon
               icon={faBeer}
-              size="2x"
+              size="fa-lg"
               // style={{ '--fa-primary-color': 'red' }}
             />
       </a>
+      </div>
     </nav>
+  
   );
 }
 export default NavbarWdivs;
+
