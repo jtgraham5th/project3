@@ -2,7 +2,22 @@ import React, { Component } from "react";
 import axios from "axios";
 import CheckoutBtn from "../components/CheckoutBtn";
 import { Button } from 'reactstrap'
+import { library } from '@fortawesome/fontawesome-svg-core'
+// import { fab } from '@fortawesome/free-brands-svg-icons'
+import {
+  faSortUp,
+  faSortDown,
+} from '@fortawesome/free-solid-svg-icons'
 
+// import { fad } from '@fortawesome/pro-duotone-svg-icons'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+
+library.add(
+ faSortUp,
+ faSortDown
+)
 // import { Link } from "react-router-dom";
 let userId = ""
 
@@ -153,18 +168,23 @@ class OrderSummary extends Component {
                 <div className="row">
                   <div className="col-md-8">{ingredient.name}</div>
                   <div className="col-md-1">
-                    <Button
+                    <button> 
+                    <FontAwesomeIcon
+                      icon={faSortUp}
+                      size="2x"
                       color="success"
                       id={index}
                       name={i}
                       value="+"
                       onClick={this.changeMeasure}
-                    >
-                    </Button>
+                    /></button>
+                  
+                  
                   </div>
                   <div className="col-md-2">{ingredient.measure}</div>
                   <div className="col-md-1">
                     <Button
+                      icon={faSortDown}
                       color="success"
                       id={index}
                       name={i}
