@@ -183,15 +183,17 @@ class OrderSummary extends Component {
                   </div>
                   <div className="col-md-2">{ingredient.measure}</div>
                   <div className="col-md-1">
-                    <Button
+                    <button>
+                      <FontAwesomeIcon
                       icon={faSortDown}
+                      size="2x"
                       color="success"
                       id={index}
                       name={i}
                       value="-"
                       onClick={this.changeMeasure}
-                    >
-                    </Button>
+                    />
+                    </button>
                   </div>
                 </div>
               ))}
