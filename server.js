@@ -1,20 +1,20 @@
-require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const path = require("path");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-// const users = require("./routes/api/users");
-
-const PORT = process.env.PORT || 3001;
-
-const db = require("./models")
-// const db = require("./config/keys").mongoURI;
-
+const cors = require('cors');
 const app = express();
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+app.use(cors());
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+const users = require("./routes/api/users");
+
+// const app = express();
+
 // Bodyparser middleware
 app.use(
   bodyParser.urlencoded({
@@ -23,26 +23,29 @@ app.use(
 );
 app.use(bodyParser.json());
 
+// DB Config
+const db = require("./config/keys").mongoURI;
+
+// Connect to MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
-//   .then(() => console.log("MongoDB successfully connected"))
-//   .catch(err => console.log(err));
+  .connect(
+    db,
+    { useNewUrlParser: true }
+  )
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
 
 // Passport middleware
 app.use(passport.initialize());
+
+
+
 // Passport config
 require("./config/passport")(passport);
+
 // Routes
-// app.use("/api/users", users);
+app.use("/api/users", users);
 
-const connection = mongoose.connection;
-
-connection.on("connected", () => {
-  console.log("Mongoose connected successfully");
-});
-connection.on("error", err => {
-  console.log("Mongoose default connection error: " + err);
-});
 
 app.get("/bartender/orders", function(req, res) {
   db.Order.find({})
@@ -136,12 +139,6 @@ app.post("/api/new", function(req, res) {
     });
 });
 
-app.use(express.static(__dirname + "/client/build"));
+const port = process.env.PORT || 5000;
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/client/build/index.html"));
-});
-
-app.listen(PORT, function() {
-  console.log(`App is running on http://localhost:${PORT}`);
-});
+app.listen(port, () => console.log(`Server up and running on port ${port} !`));

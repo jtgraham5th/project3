@@ -7,6 +7,9 @@ import CheckinBtn from "../components/CheckinBtn";
 import CheckoutBtnLB from "../components/CheckOutBtnLB";
 import API from "../utils/API";
 import {List} from "../components/List"
+import TopNav from "../components/TopNavbar";
+import NavbarWdivs from "../components/NavbarWdivs";
+
 // const AnyReactComponent = ({ text }) => <div style={{ color: 'red'}}>{text}</div>;
 
 // API key AIzaSyAlHrNlmCS8c70eIYOlfkD6JijDgE5sfOc
@@ -84,8 +87,11 @@ class Bars extends Component {
   // bar.formatedaddress
   render() {
     return (
+<>
       <div>
-        <div style={{ height: "100vh", width: "100%" }}>
+     <TopNav />
+     <NavbarWdivs />
+        <div style={{ height: "50vh", width: "100%" }}>
           <GoogleMapReact
             bootstrapURLKeys={{
               key: "AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA"
@@ -102,20 +108,6 @@ class Bars extends Component {
               />
             ))}
           </GoogleMapReact>
-        </div>
-        <h1>Local Bars to Search</h1>
-        <div>
-          {this.state.bars.map((bar, index) => (
-            <div className="row border" key={bar.id}>
-              <div className="col-md-8">
-                <h1>{bar.name}</h1>
-                <h5>{bar.formatted_address}</h5>
-              </div>
-            </div>
-          ))}
-          <form>
-            <p>Bars </p>
-          </form>
         </div>
         <Container fluid>
           <Row>
@@ -158,6 +150,7 @@ class Bars extends Component {
         </Container>
         {/* <Col size="md-6"></Col> */}
       </div>
+      </>
     );
   }
 }
