@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 const cors = require('cors');
 const app = express();
+// const io = require("socket.io")();
+// const http = require('http');
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -13,7 +15,19 @@ app.use(cors());
 
 const users = require("./routes/api/users");
 
-// const app = express();
+// const port = 4001;
+
+io.on('connection', (client) => {
+  client.on('subscribeToTimer', (interval) => {
+    console.log('client is subscribing to timer with interval ', interval);
+    setInterval(() => {
+      client.emit('timer', new Date());
+    }, interval);
+  });
+});
+
+
+
 
 // Bodyparser middleware
 app.use(
@@ -139,6 +153,11 @@ app.post("/api/new", function(req, res) {
     });
 });
 
+
+
 const port = process.env.PORT || 5000;
+console.log('listening on port ', port);
+// console.log('listening on port ', port);
+
 
 app.listen(port, () => console.log(`Server up and running on port ${port} !`));
