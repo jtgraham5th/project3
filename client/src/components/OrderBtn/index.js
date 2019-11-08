@@ -5,7 +5,6 @@ import "./style.css";
 function OrderBtn(props) {
   return (
     <div>
-      <a href="/summary">
         <button
           type="button"
           className="btn btn-primary btn-lg btn-block fixed-bottom"
@@ -13,7 +12,6 @@ function OrderBtn(props) {
         >
           Order Drinks
         </button>
-      </a>
     </div>
   );
 }

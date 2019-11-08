@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import CheckoutBtn from "../components/CheckoutBtn";
+import CheckOutBtn from "../components/CheckoutBtn/CheckOutBtn";
 import { Button } from 'reactstrap'
 
 // import { Link } from "react-router-dom";
@@ -14,7 +14,7 @@ class OrderSummary extends Component {
 
   componentDidMount() {
     axios
-      .get("/order-summary")
+      .get("/api/drinks/order-summary")
       .then(response => {
         console.log(response.data.data);
         this.setState({
@@ -25,7 +25,7 @@ class OrderSummary extends Component {
         console.log(err);
       });
       axios
-      .get(`/order-summary/${userId}`)
+      .get(`/api/drinks/order-summary/${userId}`)
       .then(response => {
         console.log(response.data.data);
         this.setState({
@@ -47,7 +47,7 @@ class OrderSummary extends Component {
     );
     if (shouldDelete === true) {
       axios
-        .delete(`/order-summary/drink/${drinkToBeRemoved}`)
+        .delete(`/api/drinks/order-summary/drink/${drinkToBeRemoved}`)
         .then(response => {
           console.log(response);
           alert("Drink has been removed");
@@ -106,7 +106,7 @@ class OrderSummary extends Component {
     console.log(newOrder);
     
     axios
-      .post("/order-summary", newOrder)
+      .post("/api/drinks/order-summary", newOrder)
       .then(response => {
         console.log(response.data.data._id);
         userId = response.data.data._id
@@ -118,7 +118,7 @@ class OrderSummary extends Component {
 
     this.state.drinks.map((drink, i) => {
       axios
-        .delete(`/order-summary/drink/${drink._id}`)
+        .delete(`/api/drinks/order-summary/drink/${drink._id}`)
         .then(response => {
           console.log(response);
           this.props.history.push("/summary");
@@ -187,7 +187,7 @@ class OrderSummary extends Component {
             </div>
           </div>
         ))}
-        <CheckoutBtn handleFormSubmit={this.handleFormSubmit} />
+        <CheckOutBtn handleFormSubmit={this.handleFormSubmit} />
       </div>
     );
   }

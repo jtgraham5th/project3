@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import SearchForm from "../components/SearchForm";
 import OrderBtn from "../components/OrderBtn";
+import NavbarWdivs from "../components/NavbarWdivs";
+import TopNav from "../components/TopNavbar";
+
 
 class OrderDrinks extends Component {
   state = {
@@ -47,7 +50,7 @@ class OrderDrinks extends Component {
     };
     console.log(newDrink);
     let currentOrder = this.state.currentOrder;
-    currentOrder.push(newDrink.drinkId);
+    currentOrder.push(newDrink);
     this.setState({
       currentOrder
     });
@@ -61,8 +64,9 @@ class OrderDrinks extends Component {
   };
 
   createOrder = event => {
+    console.log(this.state.currentOrder);
     axios
-      .post("/api/new", this.state.currentOrder)
+      .post("/api/drinks/new", this.state.currentOrder)
       .then(response => {
         console.log(response);
       })
@@ -72,11 +76,9 @@ class OrderDrinks extends Component {
       });
   };
   
-  displayAmount(id) {
-    console.log(id)
+  displayAmount = event => {
+    const id = event.target.id
     let amount = this.state.currentOrder.filter(current => current === id)
-    console.log(amount)
-    console.log(amount.length)
     return amount.length
   }
 
@@ -103,7 +105,7 @@ class OrderDrinks extends Component {
   render() {
     return (
       <div>
-        <h1>Drinkson</h1>
+        <TopNav />
         <SearchForm
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
@@ -139,13 +141,14 @@ class OrderDrinks extends Component {
             <div
               className="col-md-1"
               id={drink.drinkId}
-              // displayAmount={this.displayAmount}
+              displayAmount={this.displayAmount}
             >
-              {this.state.currentOrder.filter(current => current === drink.drinkId)}
+              {/* {drink.amount})} */}
             </div>
           </div>
         ))}
         <OrderBtn createOrder={this.createOrder} />
+        <NavbarWdivs />
       </div>
     );
   }
