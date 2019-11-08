@@ -20,7 +20,6 @@ import store from "./store";
 import Home from "./containers/Home";
 
 
-
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 
@@ -29,6 +28,7 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 import TopNav from "./components/TopNavbar";
 
 import "./index.css";
+
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -48,10 +48,21 @@ if (localStorage.jwtToken) {
     // Redirect to login
     window.location.href = "./login";
   }
+  
 }
+
+// constructor(props) {
+//   super(props);
+//   subscribeToTimer((err, timestamp) => this.setState({ 
+//     timestamp 
+//   }));
+// }
+
+// const uri
 class App extends Component {
   render() {
     return (
+      
       <Provider store={store}>
         <Router>
           {/* <Navbar /> */}

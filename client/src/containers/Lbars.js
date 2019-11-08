@@ -8,6 +8,7 @@ import CheckinBtn from "../components/CheckinBtn";
 import CheckoutBtnLB from "../components/CheckOutBtnLB";
 import API from "../utils/API";
 import { Col, Row, Jumbotron, Container } from 'reactstrap';
+import { subscribeToTimer } from '../utils/API';
 
 import { ListGroup, ListGroupItem } from 'reactstrap';
 // const AnyReactComponent = ({ text }) => <div style={{ color: 'red'}}>{text}</div>;
@@ -49,6 +50,12 @@ class Bars extends Component {
   //  const disabled = this.state.disabled ? disabled: true;
    
   // }
+  constructor(props) {
+    super(props);
+    subscribeToTimer((err, timestamp) => this.setState({ 
+      timestamp 
+    }));
+  }
 
   deleteBars = id => {
     API.deleteBar(id)
@@ -96,7 +103,7 @@ class Bars extends Component {
       <>
       <div>
      <TopNav />
-    
+     This is the timer value: {this.state.timestamp}
       <Jumbotron fluid>
       <Container fluid>
           <GoogleMapReact
