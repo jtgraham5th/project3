@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
-<<<<<<< HEAD
 // const users = require("./routes/api/users");
 // const path = 
 const PORT = process.env.PORT || 3001;
@@ -10,15 +9,12 @@ const PORT = process.env.PORT || 3001;
 const models = require("./models")
 // const db = require("./config/keys").mongoURI;
 
-const users = require("./routes/api/users");
 
-const app = express();
 // const server = require("http").Server(app)
 // const io = require("socket.io")(server)
 
 // server.listen(PORT, () => 
 //   console.log(`Web Socket: Listening on port ${PORT }`));
-=======
 const cors = require('cors');
 const app = express();
 app.use(function(req, res, next) {
@@ -31,7 +27,6 @@ app.use(cors());
 const users = require("./routes/api/users");
 
 // const app = express();
->>>>>>> 7754a9012a61e5e2670e8a760088365efe0f8561
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -215,7 +210,6 @@ app.post("/api/new", function(req, res) {
     });
 });
 
-<<<<<<< HEAD
 app.use(express.static(__dirname + "/client/build"));
 
 app.get("*", (req, res) => {
@@ -228,8 +222,5 @@ app.listen(PORT, function() {
 
 
 // const port = process.env.PORT || 8080;
-=======
-const port = process.env.PORT || 5000;
->>>>>>> 7754a9012a61e5e2670e8a760088365efe0f8561
 
 // app.listen(port, () => console.log(`Server up and running on port ${port} !`));

@@ -7,17 +7,11 @@
     "client-install": "npm install --prefix client",
     "start": "node server.js",
     "server": "nodemon server.js",
-<<<<<<< HEAD
-    "client": "npm start client",
-    "dev": "concurrently \"nodemon server.js\" \"cd client && npm run start\"",
-    "seed": "node scripts/seedsDB.js"
-=======
     "client": "npm start --prefix client",
     "dev": "concurrently \"nodemon server.js\" \"cd client && npm run start\"",
     "seed": "node scripts/seedsDB.js",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
->>>>>>> 7754a9012a61e5e2670e8a760088365efe0f8561
   },
   "author": "",
   "license": "MIT",
@@ -26,12 +20,8 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "bootstrap": "^4.3.1",
-<<<<<<< HEAD
-    "concurrently": "^5.0.0",
-=======
     "concurrently": "^4.0.1",
     "cors": "^2.8.5",
->>>>>>> 7754a9012a61e5e2670e8a760088365efe0f8561
     "dotenv": "^8.2.0",
     "express": "^4.16.4",
     "express-session": "^1.17.0",

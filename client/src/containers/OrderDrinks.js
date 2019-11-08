@@ -6,6 +6,7 @@ import OrderBtn from "../components/OrderBtn";
 class OrderDrinks extends Component {
   state = {
     drinks: [],
+    currentOrder: [],
     searchQuery: ""
   };
 
@@ -39,15 +40,29 @@ class OrderDrinks extends Component {
         {
           name: this.state.drinks[id].strIngredient5,
           measure: parseInt(this.state.drinks[id].strMeasure5)
-        },
+        }
       ],
       glass: this.state.drinks[id].strGlass,
       instructions: this.state.drinks[id].strInstructions
     };
     console.log(newDrink);
+    let currentOrder = this.state.currentOrder;
+    currentOrder.push(newDrink.drinkId);
+    this.setState({
+      currentOrder
+    });
+    console.log(this.state.currentOrder)
+    // let currentAmt = 0;
+    // this.state.currentOrder.map((order,index) => {
+    //   if(order.drinkId === currentOrder[id].drinkId) {
+    //    currentAmt++
+    //   }
+    // })
+  };
 
+  createOrder = event => {
     axios
-      .post("/api/new", newDrink)
+      .post("/api/new", this.state.currentOrder)
       .then(response => {
         console.log(response);
       })
@@ -56,6 +71,14 @@ class OrderDrinks extends Component {
         alert("Failed to create: " + err.message);
       });
   };
+  
+  displayAmount(id) {
+    console.log(id)
+    let amount = this.state.currentOrder.filter(current => current === id)
+    console.log(amount)
+    console.log(amount.length)
+    return amount.length
+  }
 
   handleInputChange = event => {
     this.setState({ searchQuery: event.target.value });
@@ -76,6 +99,7 @@ class OrderDrinks extends Component {
         console.log(err);
       });
   };
+
   render() {
     return (
       <div>
@@ -93,7 +117,7 @@ class OrderDrinks extends Component {
                 alt={drink.strDrink}
               />
             </div>
-            <div className="col-md-8">
+            <div className="col-md-6">
               <h1>{drink.strDrink}</h1>
               <p>
                 <h5>
@@ -103,14 +127,26 @@ class OrderDrinks extends Component {
                 </h5>
               </p>
             </div>
-            <div className="col-md-2">
-              <button className="primary" id={index} onClick={this.addDrink}>
+            <div className="col-md-3">
+              <button
+                className="btn btn-primary btn-large w-100"
+                id={index}
+                onClick={this.addDrink}
+              >
                 Order
               </button>
             </div>
+            <div
+              className="col-md-1"
+              id={drink.drinkId}
+              // displayAmount={this.displayAmount}
+            >
+              {this.state.currentOrder.filter(current => current === drink.drinkId)}
+            </div>
           </div>
         ))}
-        <OrderBtn /> </div>
+        <OrderBtn createOrder={this.createOrder} />
+      </div>
     );
   }
 }
