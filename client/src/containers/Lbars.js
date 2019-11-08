@@ -17,7 +17,8 @@ import { ListGroup, ListGroupItem } from 'reactstrap';
 class Bars extends Component {
   state = {
     bars: [],
-    currentBars: []
+    currentBars: [],
+    // disabled: false,
   };
   static defaultProps = {
     center: {
@@ -44,6 +45,10 @@ class Bars extends Component {
   //     .then(res => this.setState({ name: res.data }))
   //     .catch(err => console.log(err));
   // };
+  // handledisabled = () => {
+  //  const disabled = this.state.disabled ? disabled: true;
+   
+  // }
 
   deleteBars = id => {
     API.deleteBar(id)
@@ -127,7 +132,7 @@ class Bars extends Component {
                     <h5>{bar.name}</h5>
                     <p>{bar.formatted_address}</p>
                     </div>
-                    <CheckinBtn checkin={this.checkin} index={index}/>
+                {this.state.currentBars.length > 0 ? (""):(<CheckinBtn checkin={this.checkin} index={index}/>)  } 
                   </div>
                 ))}
                 
