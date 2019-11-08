@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import CheckOutBtn from "../components/CheckoutBtn/CheckOutBtn";
+import CheckOutBtn from "../components/CheckOutBtn/CheckOutBtn";
 import { Button } from 'reactstrap'
 
 // import { Link } from "react-router-dom";
