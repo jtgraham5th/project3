@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import {Nav, Navbar }from 'react-bootstrap'
+import "./style.css";
 
 class TopNav extends Component {
   onLogoutClick = e => {
@@ -14,29 +16,19 @@ class TopNav extends Component {
 
     return (
 
-   <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a className="navbar-brand" href="#">DrinkOn</a>
-  <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span className="navbar-toggler-icon"></span>
-  </button>
- 
-    <ul className="navbar-nav mr-auto">
-   
-      <li className="nav-item"
-        onClick={this.onLogoutClick}
-        className="btn btn-light waves-effect waves-light hoverable gray accent-3"
-      >
-        Logout
-      </li>
-      </ul>
-     
-      <span className="navbar-text">
-      <b>Hey there,</b> {user.name.split(" ")[0]}
-      </span>
-      </nav>
-      
 
-   
+    <Navbar className="navbar-expand-lg">
+  <Navbar.Brand href="/">DrinkOn</Navbar.Brand>
+  <Navbar.Toggle />
+  <Nav.Link onClick={this.onLogoutClick}>Logout</Nav.Link>
+  <Navbar.Collapse className="justify-content-end">
+  <Navbar.Text>
+  Hey There, {user.name.split(" ")[0]}
+  </Navbar.Text>
+  </Navbar.Collapse>
+</Navbar>
+
+
     );
   }
 }
