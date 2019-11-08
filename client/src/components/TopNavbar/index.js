@@ -16,6 +16,7 @@ class TopNav extends Component {
 
     return (
 
+
     <Navbar className="navbar-expand-lg">
   <Navbar.Brand href="/">DrinkOn</Navbar.Brand>
   <Navbar.Toggle />
@@ -26,6 +27,7 @@ class TopNav extends Component {
   </Navbar.Text>
   </Navbar.Collapse>
 </Navbar>
+
 
     );
   }

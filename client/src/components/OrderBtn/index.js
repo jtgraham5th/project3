@@ -5,15 +5,13 @@ import "./style.css";
 function OrderBtn(props) {
   return (
     <div>
-      <a href="/summary">
         <button
           type="button"
           className="btn btn-primary btn-lg btn-block fixed-bottom"
-          // onClick={props.handleFormSubmit}
+          onClick={props.createOrder}
         >
           Order Drinks
         </button>
-      </a>
     </div>
   );
 }

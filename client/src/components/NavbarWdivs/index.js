@@ -23,6 +23,7 @@ library.add(
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
 function NavbarWdivs(props) {
   return (
+
     <div id="botton-nav" className="row m-0">
       <a href="/" className="col-sm-3 border text-center h3 p-3 m-0">
           Home
@@ -35,24 +36,29 @@ function NavbarWdivs(props) {
       <a href="/Bars" className="col-sm-3 border text-center h3 p-3 m-0">
           Bars
           <FontAwesomeIcon
+
               icon={faMapMarkerAlt}
-              size="2x"
+              size="2x
               // style={{ '--fa-primary-color': 'red' }}
             />
       </a>
       <a href="/OrderDrinks" className="col-sm-3 border text-center h3 p-3 m-0">
           Drinks
           <FontAwesomeIcon
+
               icon={faCocktail}
               size="2x"
+
               // style={{ '--fa-primary-color': 'red' }}
             />
       </a>
       <a href="/Bartender" className="col-sm-3 border text-center h3 p-3 m-0">
       
           <FontAwesomeIcon
+
               icon={faBars}
               size="2x"
+
               // style={{ '--fa-primary-color': 'red' }}
             />
       </a>

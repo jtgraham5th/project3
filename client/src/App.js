@@ -71,7 +71,6 @@ class App extends Component {
             <Route path="/checkin" component={Checkin} />
             <Route path="/orderDrinks" component={OrderDrinks} />
           </Switch>
-
         </Router>
       </Provider>
     );
