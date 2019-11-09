@@ -31,7 +31,7 @@ class TopNav extends Component {
       </ul>
      
       <span className="navbar-text">
-      <b>Hey there,</b> {user.name.split(" ")[0]}
+      {/* <b>Hey there,</b> {user.name.split(" ")[0]} */}
       </span>
       </nav>
       
