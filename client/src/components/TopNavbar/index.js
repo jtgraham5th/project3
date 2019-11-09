@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import {Nav, Navbar }from 'react-bootstrap'
+import "./style.css";
 
 class TopNav extends Component {
   onLogoutClick = e => {
