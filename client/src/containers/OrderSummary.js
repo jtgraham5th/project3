@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import CheckOutBtn from "../components/CheckOutBtn";
+import CheckOutBtn from "../components/CheckoutBtn";
 import { Button } from 'reactstrap'
+import NavbarWdivs from "../components/NavbarWdivs";
+import TopNav from "../components/TopNavbar";
 
 // import { Link } from "react-router-dom";
 let userId = ""
@@ -134,6 +136,7 @@ class OrderSummary extends Component {
   render() {
     return (
       <div>
+        <TopNav />
         <h1>Edit Drinks</h1>
         {this.state.drinks.map((drink, index) => (
           <div className="row border">
@@ -185,6 +188,7 @@ class OrderSummary extends Component {
           </div>
         ))}
         <CheckOutBtn handleFormSubmit={this.handleFormSubmit} />
+        <NavbarWdivs />
       </div>
     );
   }

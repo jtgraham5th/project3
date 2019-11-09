@@ -3,6 +3,9 @@ import axios from "axios";
 import BarAcceptOrderBtn from "../components/BarAcceptOrderBtn";
 import BarCompleteOrderBtn from "../components/BarCompleteOrderBtn";
 import DrinkInstructions from "../components/DrinkInstructions";
+import NavbarWdivs from "../components/NavbarWdivs";
+import TopNav from "../components/TopNavbar";
+
 // import { Button } from 'reactstrap'
 
 // import { Link } from "react-router-dom";
@@ -71,6 +74,7 @@ class Bartender extends Component {
   render() {
     return (
       <div>
+              <TopNav />
         <h1>Drinkson</h1>
         <div className="row">
           <div className="col-md-8">
@@ -150,7 +154,9 @@ class Bartender extends Component {
               </div>
             ))}
           </div>
+          <NavbarWdivs />
         </div>
+
       </div>
     );
   }
