@@ -1,17 +1,86 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SearchForm from "../components/SearchForm";
-import Navbar from "../components/Navbar";
-import { Link } from "react-router-dom";
+import OrderBtn from "../components/OrderBtn";
+import NavbarWdivs from "../components/NavbarWdivs";
+import TopNav from "../components/TopNavbar";
+const cors = require('cors');
+
 
 class OrderDrinks extends Component {
   state = {
     drinks: [],
+    currentOrder: [],
     searchQuery: ""
   };
 
   componentDidMount() {
     // this.getDrinks();
+  }
+  addDrink = event => {
+    event.preventDefault();
+    const id = event.target.id;
+    const newDrink = {
+      drinkId: this.state.drinks[id].idDrink,
+      drinkThumb: this.state.drinks[id].strDrinkThumb,
+      drinkName: this.state.drinks[id].strDrink,
+      ingredients: [
+        {
+          name: this.state.drinks[id].strIngredient1,
+          measure: parseInt(this.state.drinks[id].strMeasure1)
+        },
+        {
+          name: this.state.drinks[id].strIngredient2,
+          measure: parseInt(this.state.drinks[id].strMeasure2)
+        },
+        {
+          name: this.state.drinks[id].strIngredient3,
+          measure: parseInt(this.state.drinks[id].strMeasure3)
+        },
+        {
+          name: this.state.drinks[id].strIngredient4,
+          measure: parseInt(this.state.drinks[id].strMeasure4)
+        },
+        {
+          name: this.state.drinks[id].strIngredient5,
+          measure: parseInt(this.state.drinks[id].strMeasure5)
+        }
+      ],
+      glass: this.state.drinks[id].strGlass,
+      instructions: this.state.drinks[id].strInstructions
+    };
+    console.log(newDrink);
+    let currentOrder = this.state.currentOrder;
+    currentOrder.push(newDrink);
+    this.setState({
+      currentOrder
+    });
+    console.log(this.state.currentOrder)
+    // let currentAmt = 0;
+    // this.state.currentOrder.map((order,index) => {
+    //   if(order.drinkId === currentOrder[id].drinkId) {
+    //    currentAmt++
+    //   }
+    // })
+  };
+
+  createOrder = event => {
+    console.log(this.state.currentOrder);
+    axios
+      .post("/api/drinks/new", this.state.currentOrder)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(err => {
+        console.log(err);
+        alert("Failed to create: " + err.message);
+      });
+  };
+  
+  displayAmount = event => {
+    const id = event.target.id
+    let amount = this.state.currentOrder.filter(current => current === id)
+    return amount.length
   }
 
   handleInputChange = event => {
@@ -21,7 +90,10 @@ class OrderDrinks extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     axios
-      .get("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + this.state.searchQuery)
+      .get(
+        "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" +
+          this.state.searchQuery, cors()
+      )
       .then(drinks => {
         console.log(drinks);
         this.setState({ drinks: drinks.data.drinks });
@@ -30,21 +102,25 @@ class OrderDrinks extends Component {
         console.log(err);
       });
   };
+
   render() {
     return (
       <div>
-        <Navbar />
-        <h1>Drinkson</h1>
+        <TopNav />
         <SearchForm
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
         />
-        {this.state.drinks.map((drink, i) => (
+        {this.state.drinks.map((drink, index) => (
           <div className="row border" key={drink.idDrink}>
             <div className="col-md-2 border">
-              <img className="w-100" src={drink.strDrinkThumb}></img>
+              <img
+                className="w-100"
+                src={drink.strDrinkThumb}
+                alt={drink.strDrink}
+              />
             </div>
-            <div className="col-md-8">
+            <div className="col-md-6">
               <h1>{drink.strDrink}</h1>
               <p>
                 <h5>
@@ -54,13 +130,26 @@ class OrderDrinks extends Component {
                 </h5>
               </p>
             </div>
-            <div class="col-md-2">
-              <Link to={"/drinks/" + drink._id}>
-                <button class="primary">Order</button>
-              </Link>
+            <div className="col-md-3">
+              <button
+                className="btn btn-primary btn-large w-100"
+                id={index}
+                onClick={this.addDrink}
+              >
+                Order
+              </button>
+            </div>
+            <div
+              className="col-md-1"
+              id={drink.drinkId}
+              displayAmount={this.displayAmount}
+            >
+              {/* {drink.amount})} */}
             </div>
           </div>
         ))}
+        <OrderBtn createOrder={this.createOrder} />
+        <NavbarWdivs />
       </div>
     );
   }

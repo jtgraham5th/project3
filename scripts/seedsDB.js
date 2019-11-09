@@ -5,10 +5,10 @@ const db = require("../models");
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-  "mongodb://localhost/tesla"
+  "mongodb://localhost/Drink"
 );
 
-const teslaSeed = [
+const drinkSeed = [
   {
     model: "S",
     color: "Blue",
@@ -29,9 +29,9 @@ const teslaSeed = [
   }
 ];
 
-db.Tesla
+db.Drink
   .remove({})
-  .then(() => db.Tesla.collection.insertMany(teslaSeed))
+  .then(() => db.Drink.collection.insertMany(drinkSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
