@@ -7,10 +7,10 @@ import MapFlag from "../components/MapFlag/MapFlag";
 import CheckinBtn from "../components/CheckinBtn";
 import CheckoutBtnLB from "../components/CheckOutBtnLB";
 import API from "../utils/API";
-import { Col, Row, Jumbotron, Container } from 'reactstrap';
-// import { subscribeToTimer } from '../utils/API';
+import {  Jumbotron, Container, ListGroup, ListGroupItem } from 'reactstrap';
 
-import { ListGroup, ListGroupItem } from 'reactstrap';
+
+
 // const AnyReactComponent = ({ text }) => <div style={{ color: 'red'}}>{text}</div>;
 
 // API key AIzaSyAlHrNlmCS8c70eIYOlfkD6JijDgE5sfOc
@@ -26,7 +26,8 @@ class Bars extends Component {
       lat: 33.7756,
       lng: -84.3963
     },
-    zoom: 10
+    zoom: 13,
+    // center: "uluru"
   };
   componentDidMount() {
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
@@ -38,6 +39,7 @@ class Bars extends Component {
         bars: response.data.results
       });
       console.log(this.state.bars);
+      
     });
   }
 
@@ -84,28 +86,15 @@ class Bars extends Component {
     
   }
 
-  // handleFormSubmit = event => {
-  //   event.preventDefault();
-  //   if (this.bar.name) {
-  //     API.saveBar({
-  //       name: this.bar.name,
-  //       address: this.bar.formatted_address
-  //     })
-  //       .then(res => this.loadbars())
-  //       .catch(err => console.log(err));
-  //   }
-  // };
 
-  // bar.formatedaddress
 
   render() {
     return (
       <>
-      <div>
-     <TopNav />
-     {/* This is the timer value: {this.state.timestamp} */}
-      <Jumbotron fluid>
-      <Container fluid>
+      <TopNav />
+    
+      <Jumbotron className="map-container">
+    <Container id="map">
           <GoogleMapReact
             bootstrapURLKeys={{
               key: "AIzaSyCxdeV70eNJ_KpZDdphRVKntO23zlCg6KA"
@@ -122,54 +111,60 @@ class Bars extends Component {
               />
             ))}
           </GoogleMapReact>
-      
           </Container>
-        </Jumbotron>
-      </div>
+          </Jumbotron>
 
-        <Container className="list" fluid>
-          <Row>
-            <Col size="md-6" >
-              <h3>Local Bars to Search</h3>
-              <ListGroup>
-              <ListGroupItem>
-                {this.state.bars.map((bar, index) => (
-                  <div className="row border" key={bar.id}>
-                    <div className="col-md-8">
-                    <h5>{bar.name}</h5>
-                    <p>{bar.formatted_address}</p>
-                    </div>
-                {this.state.currentBars.length > 0 ? (""):(<CheckinBtn checkin={this.checkin} index={index}/>)  } 
-                  </div>
-                ))}
-                
-              
-              </ListGroupItem>
-              </ListGroup>
-            </Col>
+          <Jumbotron className="list-container">
+          <Container>
           
-            <Col size="md-6 sm-12">
-              <h3>Bars You've Check-In</h3>
-              <ListGroup>
-              <ListGroupItem>
-                {this.state.currentBars.map((bar, index) => (
-                  <div className="row border" key={bar.id}>
-                    <div className="col-md-8">
-                      <h5>{bar.name}</h5>
-                      <p>{bar.formatted_address}</p>
-                    </div>
-                    <CheckoutBtnLB checkout={this.checkout}/>
+          <div className="row">
+              <div className="col-sm-6">
+                <div className="card">
+                  <div className="card-body">
+                    <h5 class="card-title">Bars Near You</h5>
+                    <ListGroup className="list" fluid>
+                    <ListGroupItem>
+                      {this.state.bars.map((bar, index) => (
+                        <div className="row border" key={bar.id}>
+                          <div className="col-md-8">
+                          <h5>{bar.name}</h5>
+                          <p>{bar.formatted_address}</p>
+                          </div>
+                          {this.state.currentBars.length > 0 ? (""):(<CheckinBtn checkin={this.checkin} index={index}/>)  }
+                        </div>
+                      ))}
+                      </ListGroupItem>
+                      </ListGroup>
                   </div>
-                 
-                ))} 
-                </ListGroupItem>
-              </ListGroup>
-            </Col>
-          </Row>
-        </Container>
-        {/* <Col size="md-6"></Col> */}
+                </div>
+              </div>
+              <div className="col-sm-6">
+                <div className="card">
+                  <div className="card-body">
+                    <h5 class="card-title">Current Location</h5>
+                    <ListGroup className="list" fluid>
+                    <ListGroupItem>
+                    {this.state.currentBars.map((bar, index) => (
+                      <div className="row border" key={bar.id}>
+                        <div className="col-md-8">
+                          <h5>{bar.name}</h5>
+                          <p>{bar.formatted_address}</p>
+                        </div>
+                        <CheckoutBtnLB checkout={this.checkout}/>
+                        </div>
+                      ))}
+                      </ListGroupItem>
+                      </ListGroup>
+                  </div>
+                </div>
+              </div>
+              </div>
+            
+              </Container>
+              </Jumbotron>
+      
         <NavbarWdivs />
-      </>
+    </>
     );
   }
 }

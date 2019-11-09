@@ -16,7 +16,7 @@ class Bartender extends Component {
 
   componentDidMount() {
     axios
-      .get("/bartender/orders")
+      .get("/api/drinks/bartender/orders")
       .then(response => {
         console.log(response);
         this.setState({
@@ -55,7 +55,7 @@ class Bartender extends Component {
 
   updateOrder(index, orderid) {
     axios
-      .put(`/bartender/orders/${orderid}`, this.state.orders[index])
+      .put(`api/drinks/bartender/orders/${orderid}`, this.state.orders[index])
       .then(response => {
         console.log(response);
         if (response.data.error) {
@@ -145,7 +145,7 @@ class Bartender extends Component {
                     }</div>
                   </div>
                 ) : (
-                  <div>No Orders</div>
+                  <div></div>
                 )}
               </div>
             ))}

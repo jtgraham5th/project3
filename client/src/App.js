@@ -29,8 +29,7 @@ import TopNav from "./components/TopNavbar";
 
 import "./index.css";
 
-
-// Check for token to keep user logged in
+// // Check for token to keep user logged in
 // if (localStorage.jwtToken) {
 //   // Set auth token header auth
 //   const token = localStorage.jwtToken;
@@ -48,17 +47,7 @@ import "./index.css";
 //     // Redirect to login
 //     window.location.href = "./login";
 //   }
-  
 // }
-
-// constructor(props) {
-//   super(props);
-//   subscribeToTimer((err, timestamp) => this.setState({ 
-//     timestamp 
-//   }));
-// }
-
-// const uri
 class App extends Component {
   render() {
     return (
@@ -82,7 +71,6 @@ class App extends Component {
             <Route path="/checkin" component={Checkin} />
             <Route path="/orderDrinks" component={OrderDrinks} />
           </Switch>
-
         </Router>
       </Provider>
     );
