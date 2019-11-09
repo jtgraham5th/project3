@@ -13,6 +13,14 @@ form.search button[type="submit"] {
     position: fixed;
     bottom: 0;
     width: 100%;
+    background-color: rgb(49, 2, 2);
+    
+}
+
+a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  /* background-color: rgba(0, 0, 0, 0); */
 }
 
 /* .navbar-brand {

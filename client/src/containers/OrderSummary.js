@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import CheckOutBtn from "../components/CheckOutBtn/CheckOutBtn";
-import { Button } from 'reactstrap'
+import { Button, Jumbotron } from 'reactstrap'
 
 // import { Link } from "react-router-dom";
 let userId = ""
@@ -133,7 +133,7 @@ class OrderSummary extends Component {
 
   render() {
     return (
-      <div>
+      <Jumbotron>
         {this.state.currentOrder.length > 0 ? (<div>
         {this.state.currentOrder.map((order,index) => (
           <div>{order.drinkName}</div>))}</div>) : (<div></div>)}
@@ -188,7 +188,7 @@ class OrderSummary extends Component {
           </div>
         ))}
         <CheckOutBtn handleFormSubmit={this.handleFormSubmit} />
-      </div>
+      </Jumbotron>
     );
   }
 }

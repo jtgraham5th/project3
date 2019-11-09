@@ -100,7 +100,7 @@ class Landing extends React.Component {
           Skip the line at the bar and order drinks from your phone.
           </p>
           
-          <div id="wrapper" className="button-style">
+          <div id="wrapper">
           <RegisterModal id="register" buttonLabel="Register"/>
           <LoginModal id="login" buttonLabel="Login"/>
          

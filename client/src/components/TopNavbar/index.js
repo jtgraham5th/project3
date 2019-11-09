@@ -16,14 +16,14 @@ class TopNav extends Component {
 
     return (
 
-   <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+   <nav className="navbar navbar-expand-lg fixed-top">
  
  
     <ul className="navbar-nav mr-auto">
    
       <li className="nav-item"
         onClick={this.onLogoutClick}
-        className="btn btn-light waves-effect waves-light hoverable gray accent-3"
+        className="link"
       >
         Logout
       </li>
