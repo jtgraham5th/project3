@@ -4,61 +4,65 @@ import "./style.css";
 import { library } from '@fortawesome/fontawesome-svg-core'
 // import { fab } from '@fortawesome/free-brands-svg-icons'
 import {
-  faWineGlass,
+  faCocktail,
+  faMapMarkerAlt,
   faHome,
-  faBeer,
-  faCashRegister,
+  faBars
 } from '@fortawesome/free-solid-svg-icons'
 // import { fad } from '@fortawesome/pro-duotone-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 library.add(
   // fab,
   // fad,
-  faWineGlass,
+  faMapMarkerAlt,
+  faCocktail,
   faHome,
-  faBeer,
-  faCashRegister
+  faBars
+  
 )
 // Using the datalist element we can create autofill suggestions based on the props.breeds array
 function NavbarWdivs(props) {
   return (
 
-    <nav id="bottom=nav" className="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="btn-group btn-group-lg">
-          <a href="/" className="btn btn-light">Home
-          <span><FontAwesomeIcon
+    <div id="botton-nav" className="row m-0">
+      <a href="/" className="col-sm-3 border text-center h3 p-3 m-0">
+          Home
+          <FontAwesomeIcon
               icon={faHome}
-              size="fa-lg"
+              size="2x"
               // style={{ '--fa-primary-color': 'red' }}
-            /></span>
+            />
       </a>
-      <a href="/Bars" className="btn btn-light">
+      <a href="/Bars" className="col-sm-3 border text-center h3 p-3 m-0">
           Bars
           <FontAwesomeIcon
-              icon={faWineGlass}
-              size="fa-lg"
+
+              icon={faMapMarkerAlt}
+              size="2x"
               // style={{ '--fa-primary-color': 'red' }}
             />
       </a>
-      <a href="/OrderDrinks" className="btn btn-light">
-          Order Drinks
+      <a href="/OrderDrinks" className="col-sm-3 border text-center h3 p-3 m-0">
+          Drinks
           <FontAwesomeIcon
-              icon={faCashRegister}
-              size="fa-lg"
+
+              icon={faCocktail}
+              size="2x"
+
               // style={{ '--fa-primary-color': 'red' }}
             />
       </a>
-      <a href="/Bartender" className="btn btn-light">
-          Bartender View
+      <a href="/Bartender" className="col-sm-3 border text-center h3 p-3 m-0">
+      
           <FontAwesomeIcon
-              icon={faBeer}
-              size="fa-lg"
+
+              icon={faBars}
+              size="2x"
+
               // style={{ '--fa-primary-color': 'red' }}
             />
       </a>
-      </div>
-    </nav>
-  
+    </div>
   );
 }
 export default NavbarWdivs;

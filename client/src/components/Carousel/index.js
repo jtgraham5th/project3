@@ -1,6 +1,9 @@
 import React from "react";
 import "./style.css";
 import {Container} from "react-bootstrap"
+import LoginModal from "../LoginModal"
+import RegisterModal from "../RegisterModal"
+
 // import {Carousel} from "react-bootstrap-carousel"
 
 
@@ -23,6 +26,7 @@ class Carousel extends React.Component {
   showImage() {
     return (
       <img 
+        alt = "rotating drinks"
         src= { imageData[this.props.imageShow][this.props.imageShow] }
         style = {{ width: "100%" }}
         />
@@ -110,10 +114,10 @@ class Landing extends React.Component {
           Line.
           </p>
           
-          <div>
-          <a href="/register" className="btn btn-light">Register</a>
-          <a href="/login" className="btn btn-light">Log In</a>
-        </div>
+          
+          <RegisterModal buttonLabel="Register"/>
+          <LoginModal buttonLabel="Login"/>
+          {/* <a href="/login" className="btn btn-light">Log In</a> */}
          
         </Container>
       </div>
