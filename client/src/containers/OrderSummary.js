@@ -1,12 +1,21 @@
 import React, { Component } from "react";
 import axios from "axios";
 import CheckOutBtn from "../components/CheckoutBtn";
-import { Button } from 'reactstrap'
 import NavbarWdivs from "../components/NavbarWdivs";
 import TopNav from "../components/TopNavbar";
+// import CheckOutBtn from "../components/CheckoutBtn/CheckOutBtn";
+import { Button } from "reactstrap";
+import { library } from "@fortawesome/fontawesome-svg-core";
+// import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faSortUp, faSortDown } from "@fortawesome/free-solid-svg-icons";
 
+// import { fad } from '@fortawesome/pro-duotone-svg-icons'
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+library.add(faSortUp, faSortDown);
 // import { Link } from "react-router-dom";
-let userId = ""
+let userId = "";
 
 class OrderSummary extends Component {
   state = {
@@ -26,7 +35,7 @@ class OrderSummary extends Component {
       .catch(err => {
         console.log(err);
       });
-      axios
+    axios
       .get(`/api/drinks/order-summary/${userId}`)
       .then(response => {
         console.log(response.data.data);
@@ -37,7 +46,6 @@ class OrderSummary extends Component {
       .catch(err => {
         console.log(err);
       });
-
   }
 
   removeDrink = event => {
@@ -67,8 +75,11 @@ class OrderSummary extends Component {
     }
   };
 
-  changeMeasure = event => {
-    const { name, id, value } = event.target;
+  changeMeasure (id,name,value){
+    // const { name, id, value } = event.target;
+    console.log(name);
+    console.log(id);
+    console.log(value);
     this.setState(state => {
       const list1 = state.drinks.map((item, j) => {
         if (parseInt(id) === parseInt(j)) {
@@ -106,16 +117,16 @@ class OrderSummary extends Component {
       order: this.state.drinks
     };
     console.log(newOrder);
-    
+
     axios
       .post("/api/drinks/order-summary", newOrder)
       .then(response => {
         console.log(response.data.data._id);
-        userId = response.data.data._id
+        userId = response.data.data._id;
       })
       .catch(err => {
         console.log(err);
-        alert("Failed to create: " + err.message)
+        alert("Failed to create: " + err.message);
       });
 
     this.state.drinks.map((drink, i) => {
@@ -128,8 +139,8 @@ class OrderSummary extends Component {
         .catch(err => {
           console.log(err);
           alert("Failed to create: " + err.message);
-      });
-    })      
+        });
+    });
     this.setState({ drinks: [] });
     };
 
@@ -153,30 +164,32 @@ class OrderSummary extends Component {
                 <div className="row">
                   <div className="col-md-8">{ingredient.name}</div>
                   <div className="col-md-1">
-                    <Button
-                      color="success"
-                      id={index}
-                      name={i}
-                      value="+"
-                      onClick={this.changeMeasure}
-                    >
-                    </Button>
+                  <FontAwesomeIcon
+                        icon={faSortUp}
+                        size="2x"
+                        color="success"
+                        id={index}
+                        name={i}
+                        value="+"
+                        onClick={() => this.changeMeasure((index),(i),"+")}
+                      />
                   </div>
-                  <div className="col-md-2">{ingredient.measure}</div>
+                  <div className="col-md-1">{ingredient.measure}</div>
                   <div className="col-md-1">
-                    <Button
-                      color="success"
-                      id={index}
-                      name={i}
-                      value="-"
-                      onClick={this.changeMeasure}
-                    >
-                    </Button>
+                      <FontAwesomeIcon
+                        icon={faSortDown}
+                        size="2x"
+                        color="success"
+                        id={index}
+                        name={i}
+                        value="-"
+                        onClick={() => this.changeMeasure((index),(i),"-")}
+                      />
                   </div>
                 </div>
               ))}
             </div>
-            <div className="col-md-2">
+            <div className="col-md-1">
               <button
                 className=" btn btn-danger"
                 id={index}
