@@ -8,7 +8,7 @@ import CheckinBtn from "../components/CheckinBtn";
 import CheckoutBtnLB from "../components/CheckOutBtnLB";
 import API from "../utils/API";
 import { Col, Row, Jumbotron, Container } from 'reactstrap';
-import { subscribeToTimer } from '../utils/API';
+// import { subscribeToTimer } from '../utils/API';
 
 import { ListGroup, ListGroupItem } from 'reactstrap';
 // const AnyReactComponent = ({ text }) => <div style={{ color: 'red'}}>{text}</div>;

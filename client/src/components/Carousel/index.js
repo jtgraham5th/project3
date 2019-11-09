@@ -24,7 +24,7 @@ class Carousel extends React.Component {
     return (
       <img 
         src= { imageData[this.props.imageShow][this.props.imageShow] }
-        style = {{ width: "100%" }}
+        style = {{ width: "100%" }} 
         />
     );
   }

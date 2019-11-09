@@ -129,7 +129,7 @@ class OrderSummary extends Component {
       });
     })      
     this.setState({ drinks: [] });
-  };
+    };
 
   render() {
     return (
