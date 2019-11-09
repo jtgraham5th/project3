@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import CheckOutBtn from "../components/CheckoutBtn/CheckOutBtn";
+import CheckOutBtn from "../components/CheckOutBtn";
 import { Button } from 'reactstrap'
 
 // import { Link } from "react-router-dom";
@@ -134,9 +134,6 @@ class OrderSummary extends Component {
   render() {
     return (
       <div>
-        {this.state.currentOrder.length > 0 ? (<div>
-        {this.state.currentOrder.map((order,index) => (
-          <div>{order.drinkName}</div>))}</div>) : (<div></div>)}
         <h1>Edit Drinks</h1>
         {this.state.drinks.map((drink, index) => (
           <div className="row border">
