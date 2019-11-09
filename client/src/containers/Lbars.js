@@ -50,12 +50,12 @@ class Bars extends Component {
   //  const disabled = this.state.disabled ? disabled: true;
    
   // }
-  constructor(props) {
-    super(props);
-    subscribeToTimer((err, timestamp) => this.setState({ 
-      timestamp 
-    }));
-  }
+  // constructor(props) {
+  //   super(props);
+  //   subscribeToTimer((err, timestamp) => this.setState({ 
+  //     timestamp 
+  //   }));
+  // }
 
   deleteBars = id => {
     API.deleteBar(id)
@@ -103,7 +103,7 @@ class Bars extends Component {
       <>
       <div>
      <TopNav />
-     This is the timer value: {this.state.timestamp}
+     {/* This is the timer value: {this.state.timestamp} */}
       <Jumbotron fluid>
       <Container fluid>
           <GoogleMapReact

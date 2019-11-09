@@ -17,14 +17,14 @@ const users = require("./routes/api/users");
 
 // const port = 4001;
 
-io.on('connection', (client) => {
-  client.on('subscribeToTimer', (interval) => {
-    console.log('client is subscribing to timer with interval ', interval);
-    setInterval(() => {
-      client.emit('timer', new Date());
-    }, interval);
-  });
-});
+// io.on('connection', (client) => {
+//   client.on('subscribeToTimer', (interval) => {
+//     console.log('client is subscribing to timer with interval ', interval);
+//     setInterval(() => {
+//       client.emit('timer', new Date());
+//     }, interval);
+//   });
+// });
 
 
 
@@ -156,7 +156,7 @@ app.post("/api/new", function(req, res) {
 
 
 const port = process.env.PORT || 5000;
-console.log('listening on port ', port);
+// console.log('listening on port ', port);
 // console.log('listening on port ', port);
 
 
