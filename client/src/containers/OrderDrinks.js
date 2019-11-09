@@ -4,6 +4,7 @@ import SearchForm from "../components/SearchForm";
 import OrderBtn from "../components/OrderBtn";
 import NavbarWdivs from "../components/NavbarWdivs";
 import TopNav from "../components/TopNavbar";
+const cors = require('cors');
 
 
 class OrderDrinks extends Component {
@@ -91,7 +92,7 @@ class OrderDrinks extends Component {
     axios
       .get(
         "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" +
-          this.state.searchQuery
+          this.state.searchQuery, cors()
       )
       .then(drinks => {
         console.log(drinks);
