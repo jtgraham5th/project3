@@ -18,9 +18,9 @@ const LoginModal = (props) => {
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
+      <Button color="secondary" onClick={toggle}>{buttonLabel}</Button>
       <Modal isOpen={modal} toggle={toggle} className={className} backdrop={backdrop}>
-        <ModalHeader toggle={toggle}></ModalHeader>
+        <ModalHeader toggle={toggle}><h3>Login</h3></ModalHeader>
         {/* <ModalBody> */}
           <Login />
         {/* </ModalBody> */}

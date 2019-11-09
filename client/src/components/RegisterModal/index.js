@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalFooter, ModalHeader } from 'reactstrap';
 
 import "./style.css";
 import Register from '../auth/Register';
@@ -18,9 +18,9 @@ const RegisterModal = (props) => {
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
+      <Button color="secondary" onClick={toggle}>{buttonLabel}</Button>
       <Modal isOpen={modal} toggle={toggle} className={className} backdrop={backdrop}>
-        {/* <ModalHeader toggle={toggle}>How to make {drinkname}</ModalHeader> */}
+        <ModalHeader toggle={toggle}><h3>Register</h3></ModalHeader>
           <Register />
         <ModalFooter>
           <Button color="secondary" onClick={toggle}>Exit</Button>

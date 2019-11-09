@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 
-
-
 import "./Auth.scss";
 
 class Login extends Component {
@@ -51,40 +49,33 @@ class Login extends Component {
     console.log(userData);
 
     this.props.loginUser(userData);
-
   };
 
   render() {
     const { errors } = this.state;
 
     return (
-      <>
-    
-      
       <div className="base-wrapper">
-        <div className="auth-header">Sign In</div>
         <form className="auth-form" noValidate onSubmit={this.onSubmit}>
-        <div className="auth-group">
-        <label>
-          <div className="auth-label">Email address</div>
-          <input
-            onChange={this.onChange}
-            value={this.state.email}
-            error={errors.email}
-            id="email"
-            type="email"
-            className="auth-input"
-          />
-          <div className="auth-error">
-            {errors.email}
-            {errors.emailnotfound}
-          </div>
-        </label>
-      </div>
-
           <div className="auth-group">
-            <label>
-              <div className="auth-label">Password</div>
+            <div className="input-field col s12">
+              <input
+                onChange={this.onChange}
+                value={this.state.email}
+                error={errors.email}
+                id="email"
+                type="email"
+                className="auth-input"
+              />
+              <label htmlFor="email">Email address</label>
+              <span className="auth-error">
+                {errors.email}
+                {errors.emailnotfound}
+              </span>
+            </div>
+          </div>
+          <div className="auth-group">
+            <div className="input-field col s12">
               <input
                 onChange={this.onChange}
                 value={this.state.password}
@@ -93,31 +84,31 @@ class Login extends Component {
                 type="password"
                 className="auth-input"
               />
-              <div className="auth-error">
+              <label htmlFor="password">Password</label>
+              <span className="auth-error">
                 {errors.password}
                 {errors.passwordincorrect}
-              </div>
-            </label>
+              </span>
+            </div>
           </div>
-
           <div>
-            <button type="submit" className="auth-button">
-              Login
+            <button 
+              style={{
+                width: "150px",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+                marginTop: "1rem"
+              }}
+              type="submit"
+              className="btn btn-large waves-effect waves-light hoverable secondary accent-3"
+            >
+              Sign up
             </button>
           </div>
           <div className="bottom-group">
-            <Link to="/register" className="link">
-              Sign up
-            </Link>
-            <Link to="/" className="link">
-            Go Back
-          </Link>
-        
           </div>
         </form>
-     
       </div>
-      </>
     );
   }
 }
