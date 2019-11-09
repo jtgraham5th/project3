@@ -22,7 +22,7 @@ import Home from "./containers/Home";
 
 
 import Register from "./components/auth/Register";
-import Login from "./components/auth/Login";
+import Bars from "./components/auth/Login";
 
 // import Navbar from "./components/Navbars/Navbar";
 import PrivateRoute from "./components/private-route/PrivateRoute";
@@ -60,7 +60,7 @@ class App extends Component {
         
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/login" component={LocalBars} />
           <Switch>
             <PrivateRoute exact path="/TopNav" component={TopNav} />
             <PrivateRoute exact path="/Bars" component={LocalBars} />

@@ -4,6 +4,8 @@ import SearchForm from "../components/SearchForm";
 import OrderBtn from "../components/OrderBtn";
 import NavbarWdivs from "../components/NavbarWdivs";
 import TopNav from "../components/TopNavbar";
+import { Jumbotron } from 'reactstrap';
+import { Container } from "react-bootstrap";
 const cors = require('cors');
 
 
@@ -105,12 +107,18 @@ class OrderDrinks extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <TopNav />
+
+        <Jumbotron className="list-container">
+        <Container className="search">
         <SearchForm
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
         />
+        <OrderBtn create Order={this.createOrder} />
+        </Container>
+        <Container className="drink-list">
         {this.state.drinks.map((drink, index) => (
           <div className="row border" key={drink.idDrink}>
             <div className="col-md-2 border">
@@ -132,11 +140,11 @@ class OrderDrinks extends Component {
             </div>
             <div className="col-md-3">
               <button
-                className="btn btn-primary btn-large w-100"
+              className="button-style"
                 id={index}
                 onClick={this.addDrink}
               >
-                Order
+                Add
               </button>
             </div>
             <div
@@ -145,12 +153,14 @@ class OrderDrinks extends Component {
               displayAmount={this.displayAmount}
             >
               {/* {drink.amount})} */}
+             
+              </div>
             </div>
-          </div>
         ))}
-        <OrderBtn createOrder={this.createOrder} />
+        </Container>
+        </Jumbotron>
         <NavbarWdivs />
-      </div>
+      </>
     );
   }
 }

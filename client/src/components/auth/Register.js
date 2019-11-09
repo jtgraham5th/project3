@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
 
-import "./Auth.scss";
+// import "./Auth.scss";
 
 class Register extends Component {
   constructor() {
@@ -133,9 +133,7 @@ class Register extends Component {
                 <Link to="/login" className="link">
                   Sign in
                 </Link>
-                <Link to="/" className="link">
-                Go Back
-              </Link>
+                
               </div>
               </div>
             </form>

@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import RegisterModal from "../RegisterModal";
 
 
-
-import "./Auth.scss";
+// import "./Auth.scss";
 
 class Login extends Component {
   constructor() {
@@ -105,15 +105,10 @@ class Login extends Component {
               Login
             </button>
           </div>
-          <div className="bottom-group">
-            <Link to="/register" className="link">
-              Sign up
-            </Link>
-            <Link to="/" className="link">
-            Go Back
-          </Link>
+          <RegisterModal buttonLabel="Register"/>
+           
         
-          </div>
+         
         </form>
      
       </div>
