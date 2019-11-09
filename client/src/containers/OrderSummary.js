@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import CheckoutBtn from "../components/CheckoutBtn";
+import CheckOutBtn from "../components/CheckoutBtn/CheckOutBtn";
 import { Button } from 'reactstrap'
 import { library } from '@fortawesome/fontawesome-svg-core'
 // import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -209,7 +209,7 @@ class OrderSummary extends Component {
             </div>
           </div>
         ))}
-        <CheckoutBtn handleFormSubmit={this.handleFormSubmit} />
+        <CheckOutBtn handleFormSubmit={this.handleFormSubmit} />
       </div>
     );
   }

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 
 
+
 import "./Auth.scss";
 
 class Login extends Component {
@@ -18,15 +19,15 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    // If logged in and user navigates to Login page, should redirect them to dashboard
+    // If logged in and user navigates to Login page, should redirect them to the bars page
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push("/Bars");
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push("/Bars");
     }
 
     if (nextProps.errors) {
@@ -47,6 +48,7 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password
     };
+    console.log(userData);
 
     this.props.loginUser(userData);
 
@@ -56,6 +58,9 @@ class Login extends Component {
     const { errors } = this.state;
 
     return (
+      <>
+    
+      
       <div className="base-wrapper">
         <div className="auth-header">Sign In</div>
         <form className="auth-form" noValidate onSubmit={this.onSubmit}>
@@ -104,9 +109,15 @@ class Login extends Component {
             <Link to="/register" className="link">
               Sign up
             </Link>
+            <Link to="/" className="link">
+            Go Back
+          </Link>
+        
           </div>
         </form>
+     
       </div>
+      </>
     );
   }
 }
