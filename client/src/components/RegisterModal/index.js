@@ -1,5 +1,5 @@
 // import React, { useState } from 'react';
-// import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+// import { Button, Modal, ModalFooter, ModalHeader } from 'reactstrap';
 
 // import "./style.css";
 // import Register from '../Register';
@@ -16,18 +16,18 @@
 
 //   const toggle = () => setModal(!modal);
 
-//   return (
-//     <div>
-//       <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
-//       <Modal isOpen={modal} toggle={toggle} className={className} backdrop={backdrop}>
-//         {/* <ModalHeader toggle={toggle}>How to make {drinkname}</ModalHeader> */}
-//           <Register />
-//         <ModalFooter>
-//           <Button color="secondary" onClick={toggle}>Exit</Button>
-//         </ModalFooter>
-//       </Modal>
-//     </div>
-//   );
-// }
+  // return (
+  //   <div>
+  //     <Button color="secondary" onClick={toggle}>{buttonLabel}</Button>
+  //     <Modal isOpen={modal} toggle={toggle} className={className} backdrop={backdrop}>
+  //       <ModalHeader toggle={toggle}><h3>Register</h3></ModalHeader>
+  //         <Register />
+  //       <ModalFooter>
+  //         <Button color="secondary" onClick={toggle}>Exit</Button>
+  //       </ModalFooter>
+  //     </Modal>
+  //   </div>
+  // );
+
 
 // export default RegisterModal;

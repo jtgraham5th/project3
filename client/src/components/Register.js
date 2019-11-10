@@ -10,30 +10,30 @@ import { registerUser } from "../actions/services";
 
 // import "./Auth.scss";
 
-class Register extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: "",
-      email: "",
-      password: "",
-      password2: "",
-      errors: {}
-    };
-  }
+// class Register extends Component {
+//   constructor() {
+//     super();
+//     this.state = {
+//       name: "",
+//       email: "",
+//       password: "",
+//       password2: "",
+//       errors: {}
+//     };
+//   }
 
 
-	handleOnChangeUserName = e => {
-		this.setState({
-			email: e.target.value
-		});
-	}
+// 	handleOnChangeUserName = e => {
+// 		this.setState({
+// 			email: e.target.value
+// 		});
+// 	}
 
-	handleOnChangePassword = e => {
-		this.setState({
-			password: e.target.value
-		});
-	}
+// 	handleOnChangePassword = e => {
+// 		this.setState({
+// 			password: e.target.value
+// 		});
+// 	}
 
   // componentDidMount() {
   //   // If logged in and user navigates to Register page, should redirect them to dashboard
@@ -50,35 +50,35 @@ class Register extends Component {
   //   }
   // }
 
-  onChange = e => {
-    this.setState({ [e.target.id]: e.target.value });
-  };
+//   onChange = e => {
+//     this.setState({ [e.target.id]: e.target.value });
+//   };
 
- onSubmit = e => {
+//  onSubmit = e => {
 
-		e.preventDefault();
-		const newUser = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      // password2: this.state.password2
-    };
-    console.log(newUser);
+// 		e.preventDefault();
+// 		const newUser = {
+//       name: this.state.name,
+//       email: this.state.email,
+//       password: this.state.password,
+//       // password2: this.state.password2
+//     };
+//     console.log(newUser);
 
-		const registerStatus = registerUser(newUser);
-			if(registerStatus === 200) {
-					this.setState({
-					name: '',
-					email: '',
-					password: '',
-					register: true,
-					error: false
-				});
-			} else this.setState({
-				error: true,
-				register: false
-			});
-		}
+// 		const registerStatus = registerUser(newUser);
+// 			if(registerStatus === 200) {
+// 					this.setState({
+// 					name: '',
+// 					email: '',
+// 					password: '',
+// 					register: true,
+// 					error: false
+// 				});
+// 			} else this.setState({
+// 				error: true,
+// 				register: false
+// 			});
+// 		}
 
 
 
@@ -101,105 +101,104 @@ class Register extends Component {
   //   this.registerUser(newUser, this.props.history);
   // };
 
-  render() {
-    const { errors } = this.state;
+//   render() {
+//     const { errors } = this.state;
 
-    return (
+//     return (
+//       <div className="base-wrapper">
+//         {/* <div className="auth-header">Register</div> */}
+//         <form className="auth-form" noValidate onSubmit={this.onSubmit}>
+//           <div className="auth-group">
+//             <div className="input-field col s12">
+//               <input
+//                 onChange={this.onChange}
+//                 value={this.state.name}
+//                 error={errors.name}
+//                 id="name"
+//                 type="text"
+//                 className="auth-input"
+//               />
+//               <label htmlFor="name">Name</label>
+//               <span className="auth-error">{errors.name}</span>
+//             </div>
+//           </div>
+//           <div className="input-field col s12">
+//             <input
+//               onChange={this.onChange}
+//               value={this.state.email}
+//               error={errors.email}
+//               id="email"
+//               type="email"
+//               className={classnames("", {
+//                 invalid: errors.email
+//               })}
+//             />
+//             <label htmlFor="email">Email</label>
+//             <span className="red-text">{errors.email}</span>
+//           </div>
+//           <div className="input-field col s12">
+//             <input
+//               onChange={this.onChange}
+//               value={this.state.password}
+//               error={errors.password}
+//               id="password"
+//               type="password"
+//               className={classnames("", {
+//                 invalid: errors.password
+//               })}
+//             />
+//             <label htmlFor="password">Password</label>
+//             <span className="red-text">{errors.password}</span>
+//           </div>
+//           <div className="input-field col s12">
+//             <input
+//               onChange={this.onChange}
+//               value={this.state.password2}
+//               error={errors.password2}
+//               id="password2"
+//               type="password"
+//               className={classnames("", {
+//                 invalid: errors.password2
+//               })}
+//             />
+//             <label htmlFor="password2">Confirm Password</label>
+//             <span className="red-text">{errors.password2}</span>
+//           </div>
+//           <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+//             <button
+//               style={{
+//                 width: "150px",
+//                 borderRadius: "3px",
+//                 letterSpacing: "1.5px",
+//                 marginTop: "1rem"
+//               }}
+//               type="submit"
+//               className="btn btn-large waves-effect waves-light hoverable secondary accent-3"
+//             >
+//               Sign up
+//             </button>
 
-      <div className="base-wrapper">
-      <div>Register</div>
-      <form onSubmit={this.onSubmit}>
-        <div>
-          <label>
-            <div>Name</div>
-            <input
-              onChange={this.onChange}
-              value={this.state.name}
-              error={errors.name}
-              id="name"
-              type="text"
-           
-            />
-            <div>{errors.name}</div>
-          </label>
-        </div>
-              <div className="input-field col s12">
-                <input
-                  onChange={this.onChange}
-                  value={this.state.email}
-                  error={errors.email}
-                  id="email"
-                  type="email"
-                  
-                  
-                />
-                <label htmlFor="email">Email</label>
-                <span className="red-text">{errors.email}</span>
-              </div>
-              <div className="input-field col s12">
-                <input
-                  onChange={this.onChange}
-                  value={this.state.password}
-                  error={errors.password}
-                  id="password"
-                  type="password"
-                  
-                />
-                <label htmlFor="password">Password</label>
-                <span className="red-text">{errors.password}</span>
-              </div>
-              <div className="input-field col s12">
-                <input
-                  onChange={this.onChange}
-                  value={this.state.password2}
-                  error={errors.password2}
-                  id="password2"
-                  type="password"
-                
-                />
-                <label htmlFor="password2">Confirm Password</label>
-                <span className="red-text">{errors.password2}</span>
-              </div>
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                <button
-                  style={{
-                    width: "150px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px",
-                    marginTop: "1rem"
-                  }}
-                  type="submit"
-                  
-                >
-                  Sign up
-                </button>
-
-                <div className="bottom-group">
-                <Link to="/login" className="link">
-                  Sign in
-                </Link>
-                
-              </div>
-              </div>
-            </form>
-          </div>
-    );
-  }
-}
+//             <div className="bottom-group">
+//             </div>
+//           </div>
+//         </form>
+//       </div>
+//     );
+//   }
+// }
 
 // Register.propTypes = {
 //   registerUser: PropTypes.func.isRequired,
-  
+//   auth: PropTypes.object.isRequired,
 //   errors: PropTypes.object.isRequired
 // };
 
 // const mapStateToProps = state => ({
-  
+//   auth: state.auth,
 //   errors: state.errors
 // });
 
-export default Register
-// (
-//   // mapStateToProps,
-//   // { registerUser }
-// )(Register);
+// export default connect(
+//   mapStateToProps,
+//   { registerUser }
+// )(withRouter(Register));

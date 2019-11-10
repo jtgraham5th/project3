@@ -7,7 +7,7 @@ import MapFlag from "../components/MapFlag/MapFlag";
 import CheckinBtn from "../components/CheckinBtn";
 import CheckoutBtnLB from "../components/CheckOutBtnLB";
 import API from "../utils/API";
-import { Col, Row, Jumbotron, Container, ListGroup, ListGroupItem } from 'reactstrap';
+import {  Jumbotron, Container, ListGroup, ListGroupItem } from 'reactstrap';
 
 
 
@@ -18,7 +18,8 @@ import { Col, Row, Jumbotron, Container, ListGroup, ListGroupItem } from 'reacts
 class Bars extends Component {
   state = {
     bars: [],
-    currentBars: []
+    currentBars: [],
+    // disabled: false,
   };
   static defaultProps = {
     center: {
@@ -47,6 +48,16 @@ class Bars extends Component {
   //     .then(res => this.setState({ name: res.data }))
   //     .catch(err => console.log(err));
   // };
+  // handledisabled = () => {
+  //  const disabled = this.state.disabled ? disabled: true;
+   
+  // }
+  // constructor(props) {
+  //   super(props);
+  //   subscribeToTimer((err, timestamp) => this.setState({ 
+  //     timestamp 
+  //   }));
+  // }
 
   deleteBars = id => {
     API.deleteBar(id)
@@ -119,7 +130,7 @@ class Bars extends Component {
                           <h5>{bar.name}</h5>
                           <p>{bar.formatted_address}</p>
                           </div>
-                          <CheckinBtn checkin={this.checkin} index={index}/>
+                          {this.state.currentBars.length > 0 ? (""):(<CheckinBtn checkin={this.checkin} index={index}/>)  }
                         </div>
                       ))}
                       </ListGroupItem>

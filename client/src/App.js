@@ -5,19 +5,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import OrderDrinks from "./containers/OrderDrinks";
 
-import Checkin from "./containers/Checkin";
+
 import LocalBars from "./containers/Lbars";
 import OrderSummary from "./containers/OrderSummary";
 import Bartender from "./containers/Bartender";
-
 
 
 import Home from "./containers/Home";
 
 
 
-import Register from "./components/Register";
-import Bars from "./components/Login";
+// import Register from "./components/Register";
+// import Bars from "./components/Login";
 
 // import Navbar from "./components/Navbars/Navbar";
 
@@ -32,11 +31,8 @@ class App extends Component {
         <Router>
           {/* <Navbar /> */}
           
-          
-        
           <Route exact path="/" component={Home} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={LocalBars} />
+       
           <Switch>
             <Route path exact path="/TopNav" component={TopNav} />
             <Route path exact path="/Bars" component={LocalBars} />
@@ -44,7 +40,7 @@ class App extends Component {
             <Route path="/Bartender" component={Bartender} />
             
             <Route path="/summary" component={OrderSummary} />
-            <Route path="/checkin" component={Checkin} />
+          
             <Route path="/orderDrinks" component={OrderDrinks} />
           </Switch>
         </Router>

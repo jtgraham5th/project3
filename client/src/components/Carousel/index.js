@@ -29,7 +29,7 @@ class Carousel extends React.Component {
       <img 
         alt = "rotating drinks"
         src= { imageData[this.props.imageShow][this.props.imageShow] }
-        style = {{ width: "100%" }}
+        style = {{ width: "100%" }} 
         />
     );
   }
