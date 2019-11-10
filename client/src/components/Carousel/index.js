@@ -1,8 +1,9 @@
 import React from "react";
 import "./style.css";
-import {Container} from "react-bootstrap"
-import LoginModal from "../LoginModal"
-import RegisterModal from "../RegisterModal"
+import {Container} from "react-bootstrap";
+import { Link } from 'react';
+// import LoginModal from "../LoginModal"
+// import RegisterModal from "../RegisterModal"
 
 // import {Carousel} from "react-bootstrap-carousel"
 
@@ -98,14 +99,12 @@ class Landing extends React.Component {
           <h1>Welcome to Drinks on Us</h1>
           <p className="lead">
           Skip the line at the bar and order drinks from your phone.
+          To begin, click the Checkin button to see bars near you.
           </p>
           
-          <div id="wrapper"c>
-          <RegisterModal id="register" buttonLabel="Register"/>
-          <LoginModal id="login" buttonLabel="Login"/>
-         
-          
-          </div>
+         <div className="btn btn-success">
+         <a href="/Bars">Check In</a>
+         </div>
         
          
         </Container>

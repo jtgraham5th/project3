@@ -1,20 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const keys = require("../../config/keys");
-const bodyParser = require("body-parser");
+// const keys = require("../../config/keys");
+// const bodyParser = require("body-parser");
 
-// app.use(
-//   bodyParser.urlencoded({
-//     extended: false
-//   })
-// );
-// app.use(bodyParser.json());
 
-// Load User model
-const Drink = require("../../models/Drink");
-const Order = require("../../models/Order");
-
-router.get("/bartender/orders", function(req, res) {
+drinksrouter.get("/bartender/orders", function(req, res) {
   Order.find({})
     .then(allOrders => {
       res.json({
@@ -32,7 +22,7 @@ router.get("/bartender/orders", function(req, res) {
     });
 });
 
-router.get("/order-summary", function(req, res) {
+drinksrouter.get("/order-summary", function(req, res) {
   Drink.find({})
     .then(allDrinks => {
       console.log(allDrinks);
@@ -51,7 +41,7 @@ router.get("/order-summary", function(req, res) {
     });
 });
 
-router.post("/order-summary", function(req, res) {
+drinksrouter.post("/order-summary", function(req, res) {
   Order.create(req.body)
     .then(newOrder => {
       console.log("New Order: ", newOrder);
@@ -69,7 +59,7 @@ router.post("/order-summary", function(req, res) {
       });
     });
 });
-router.delete("/order-summary/drink/:id", function(req, res) {
+drinksrouter.delete("/order-summary/drink/:id", function(req, res) {
   Drink.deleteOne({ _id: req.params.id })
     .then(response => {
       // console.log(response);
@@ -87,7 +77,7 @@ router.delete("/order-summary/drink/:id", function(req, res) {
       });
     });
 });
-router.post("/new", function(req, res) {
+drinksrouter.post("/new", function(req, res) {
   console.log("You hit the api new route");
   console.log(req.body);
   Drink.create(req.body)

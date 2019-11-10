@@ -116,7 +116,7 @@ class OrderDrinks extends Component {
           handleFormSubmit={this.handleFormSubmit}
           handleInputChange={this.handleInputChange}
         />
-        <OrderBtn create Order={this.createOrder} />
+        <OrderBtn createOrder={this.createOrder} />
         </Container>
         <Container className="drink-list">
         {this.state.drinks.map((drink, index) => (

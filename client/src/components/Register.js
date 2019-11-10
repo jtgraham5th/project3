@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { registerUser } from "../../actions/authActions";
-import classnames from "classnames";
+
+import { registerUser } from "../actions/services";
+
+
+
+
 
 // import "./Auth.scss";
 
@@ -19,37 +22,84 @@ class Register extends Component {
     };
   }
 
-  componentDidMount() {
-    // If logged in and user navigates to Register page, should redirect them to dashboard
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/Login");
-    }
-  }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors
-      });
-    }
-  }
+	handleOnChangeUserName = e => {
+		this.setState({
+			email: e.target.value
+		});
+	}
+
+	handleOnChangePassword = e => {
+		this.setState({
+			password: e.target.value
+		});
+	}
+
+  // componentDidMount() {
+  //   // If logged in and user navigates to Register page, should redirect them to dashboard
+  //   if (this.props.auth.isAuthenticated) {
+  //     this.props.history.push("/Login");
+  //   }
+  // }
+
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.errors) {
+  //     this.setState({
+  //       errors: nextProps.errors
+  //     });
+  //   }
+  // }
 
   onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  onSubmit = e => {
-    e.preventDefault();
+ onSubmit = e => {
 
-    const newUser = {
+		e.preventDefault();
+		const newUser = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
-      password2: this.state.password2
+      // password2: this.state.password2
     };
+    console.log(newUser);
 
-    this.props.registerUser(newUser, this.props.history);
-  };
+		const registerStatus = registerUser(newUser);
+			if(registerStatus === 200) {
+					this.setState({
+					name: '',
+					email: '',
+					password: '',
+					register: true,
+					error: false
+				});
+			} else this.setState({
+				error: true,
+				register: false
+			});
+		}
+
+
+
+
+
+
+
+
+
+  // onSubmit = e => {
+  //   e.preventDefault();
+
+  //   const newUser = {
+  //     name: this.state.name,
+  //     email: this.state.email,
+  //     password: this.state.password,
+  //     // password2: this.state.password2
+  //   };
+
+  //   this.registerUser(newUser, this.props.history);
+  // };
 
   render() {
     const { errors } = this.state;
@@ -57,20 +107,20 @@ class Register extends Component {
     return (
 
       <div className="base-wrapper">
-      <div className="auth-header">Register</div>
-      <form className="auth-form" noValidate onSubmit={this.onSubmit}>
-        <div className="auth-group">
+      <div>Register</div>
+      <form onSubmit={this.onSubmit}>
+        <div>
           <label>
-            <div className="auth-label">Name</div>
+            <div>Name</div>
             <input
               onChange={this.onChange}
               value={this.state.name}
               error={errors.name}
               id="name"
               type="text"
-              className="auth-input"
+           
             />
-            <div className="auth-error">{errors.name}</div>
+            <div>{errors.name}</div>
           </label>
         </div>
               <div className="input-field col s12">
@@ -80,9 +130,8 @@ class Register extends Component {
                   error={errors.email}
                   id="email"
                   type="email"
-                  className={classnames("", {
-                    invalid: errors.email
-                  })}
+                  
+                  
                 />
                 <label htmlFor="email">Email</label>
                 <span className="red-text">{errors.email}</span>
@@ -94,9 +143,7 @@ class Register extends Component {
                   error={errors.password}
                   id="password"
                   type="password"
-                  className={classnames("", {
-                    invalid: errors.password
-                  })}
+                  
                 />
                 <label htmlFor="password">Password</label>
                 <span className="red-text">{errors.password}</span>
@@ -108,9 +155,7 @@ class Register extends Component {
                   error={errors.password2}
                   id="password2"
                   type="password"
-                  className={classnames("", {
-                    invalid: errors.password2
-                  })}
+                
                 />
                 <label htmlFor="password2">Confirm Password</label>
                 <span className="red-text">{errors.password2}</span>
@@ -124,7 +169,7 @@ class Register extends Component {
                     marginTop: "1rem"
                   }}
                   type="submit"
-                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                  
                 >
                   Sign up
                 </button>
@@ -142,18 +187,19 @@ class Register extends Component {
   }
 }
 
-Register.propTypes = {
-  registerUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
-};
+// Register.propTypes = {
+//   registerUser: PropTypes.func.isRequired,
+  
+//   errors: PropTypes.object.isRequired
+// };
 
-const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors
-});
+// const mapStateToProps = state => ({
+  
+//   errors: state.errors
+// });
 
-export default connect(
-  mapStateToProps,
-  { registerUser }
-)(withRouter(Register));
+export default Register
+// (
+//   // mapStateToProps,
+//   // { registerUser }
+// )(Register);

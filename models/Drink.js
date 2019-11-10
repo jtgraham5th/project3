@@ -29,10 +29,11 @@ var DrinkSchema = new Schema({
     type: String,
     required: true
   }
+},
+{
+ collection: 'Drink'
 });
 
-// This creates our model from the above schema, using mongoose's model method
-const Drink = mongoose.model("Drink", DrinkSchema);
+// Export the model
+module.exports = mongoose.model("Drink", DrinkSchema);
 
-// Export the Article model
-module.exports = Drink;
