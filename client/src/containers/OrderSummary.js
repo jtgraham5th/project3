@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
-import CheckOutBtn from "../components/CheckoutBtn";
+import CheckOutBtn from "../components/CheckOutBtn";
 import NavbarWdivs from "../components/NavbarWdivs";
 import TopNav from "../components/TopNavbar";
-// import CheckOutBtn from "../components/CheckoutBtn/CheckOutBtn";
+
 import { Button } from "reactstrap";
 import { library } from "@fortawesome/fontawesome-svg-core";
 // import { fab } from '@fortawesome/free-brands-svg-icons'
@@ -55,7 +55,7 @@ class OrderSummary extends Component {
     let shouldDelete = window.confirm(
       "Are you sure you want to delete this drink?"
     );
-    if (shouldDelete === true) {
+    // if (shouldDelete === true) {
       axios
         .delete(`/api/drinks/order-summary/drink/${drinkToBeRemoved}`)
         .then(response => {
@@ -72,7 +72,7 @@ class OrderSummary extends Component {
         drinksCopy.splice(id, 1);
         this.setState({ drinks: drinksCopy });
       }
-    }
+    // }
   };
 
   changeMeasure (id,name,value){
