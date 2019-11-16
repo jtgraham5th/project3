@@ -1,8 +1,9 @@
 import React from "react";
 import "./style.css";
-import {Container} from "react-bootstrap"
-import LoginModal from "../LoginModal"
-import RegisterModal from "../RegisterModal"
+import {Container} from "react-bootstrap";
+import { Link } from 'react';
+// import LoginModal from "../LoginModal"
+// import RegisterModal from "../RegisterModal"
 
 // import {Carousel} from "react-bootstrap-carousel"
 
@@ -43,20 +44,7 @@ class Carousel extends React.Component {
   }
 }
 
-// class CarouselControl extends React.Component {
-//   constructor(props){
-//     super(props);
-//   }
-  
-//   render() {
-//     return(
-//       <div>
-//         <button onClick={this.props.prev}>Prev</button>
-//         <button onClick={this.props.next}>Next</button>
-//       </div>
-//     );
-//   }
-// }
+
 
 class Landing extends React.Component {
   constructor(){
@@ -110,14 +98,14 @@ class Landing extends React.Component {
           <Container className="welcome">
           <h1>Welcome to Drinks on Us</h1>
           <p className="lead">
-          A way for User's to create an Order with a Bartender and Skip the
-          Line.
+          Skip the line at the bar and order drinks from your phone.
+          To begin, click the Checkin button to see bars near you.
           </p>
           
-          
-          <RegisterModal buttonLabel="Register"/>
-          <LoginModal buttonLabel="Login"/>
-          {/* <a href="/login" className="btn btn-light">Log In</a> */}
+         <div className="btn btn-success">
+         <a href="/Bars">Check In</a>
+         </div>
+        
          
         </Container>
       </div>

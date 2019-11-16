@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3001;
 const models = require("./config/keys").MONGODB_URI
 // DB Config
 const db = require("./config/keys").mongoURI;
-const users = require("./routes/api/users");
+// const users = require("./routes/api/users");
 const drinks = require("./routes/api/drinks");
 // Bodyparser middleware
 app.use(
@@ -53,7 +53,7 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 
 // Routes
-app.use("/api/users", users);
+// app.use("/api/users", users);
 app.use("/api/drinks", drinks)
 
 // app.get("/bartender/orders", function(req, res) {

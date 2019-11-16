@@ -8,7 +8,7 @@ function OrderBtn(props) {
       <a href="/summary">
         <button
           type="button"
-          className="btn btn-primary btn-lg btn-block fixed-bottom"
+          className="button-style"
           onClick={props.createOrder}
         >
           Order Drinks

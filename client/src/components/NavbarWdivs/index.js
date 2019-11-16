@@ -24,7 +24,7 @@ library.add(
 function NavbarWdivs(props) {
   return (
 
-    <div id="botton-nav" className="row m-0">
+    <div id="bottom-nav" className="row m-0">
       <a href="/" className="col-sm-3 border text-center h3 p-3 m-0">
           Home
           <FontAwesomeIcon

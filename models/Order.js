@@ -52,11 +52,16 @@ var OrderSchema = new Schema({
     type: Boolean,
     required: true,
     default: false
-  }
+  },
+
+  id: {
+    type: Number,
+    unique: true
+}
+},
+{
+ collection: 'Order'
 });
 
-// This creates our model from the above schema, using mongoose's model method
-const Order = mongoose.model("Order", OrderSchema);
-
 // Export the Article model
-module.exports = Order;
+module.exports = mongoose.model("Order", OrderSchema);

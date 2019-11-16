@@ -31,3 +31,9 @@
 .list-overflow-container li:last-child {
   border-bottom: none;
 }
+
+p {
+  color: rgb(0, 0, 0);
+  -webkit-text-emphasis: bold;
+  text-emphasis: bold;
+}
