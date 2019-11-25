@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+// const drinksrouter = require("../../models/Drink");
 // const keys = require("../../config/keys");
 // const bodyParser = require("body-parser");
 

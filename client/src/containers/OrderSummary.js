@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import CheckOutBtn from "../components/CheckOutBtn";
+import CheckOutBtn from "../components/CheckoutBtn";
 import NavbarWdivs from "../components/NavbarWdivs";
 import TopNav from "../components/TopNavbar";
 
